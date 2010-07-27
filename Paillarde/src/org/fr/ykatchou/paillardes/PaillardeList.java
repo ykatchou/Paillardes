@@ -1,9 +1,9 @@
 package org.fr.ykatchou.paillardes;
 
-import java.io.IOException;
 import java.util.List;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -17,16 +17,12 @@ public class PaillardeList extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		Bundle b = getIntent().getBundleExtra("data");
+		String filter = b.getString("filter");
+
 		dbhelp = new DatabaseHelper(this);
 
-		try {
-			dbhelp.init();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		List<Chanson> datalist = dbhelp.getTitres();
+		List<Chanson> datalist = dbhelp.getTitres(filter);
 		if (datalist.size() == 0) {
 			Toast.makeText(this, "Pas de résultats", Toast.LENGTH_LONG).show();
 		} else {
@@ -41,16 +37,13 @@ public class PaillardeList extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 
-		// Bundle b = getIntent().getBundleExtra("data");
-		// String filter = b.getString("filter");
-		/*
-		 * Chanson ap = ListAnnuairePerson.getList(filter).get(position);
-		 * b.putLong(AnnuairePerson.ID, (Long) ap.get(AnnuairePerson.ID));
-		 * 
-		 * Intent i = new Intent(v.getContext(), ActivityFichePerson.class);
-		 * i.putExtra("data", b);
-		 * 
-		 * startActivity(i);
-		 */
+		Bundle b = getIntent().getBundleExtra("data");
+		String filter = b.getString("filter");
+
+		Chanson ap = dbhelp.getTitres(filter).get(position);
+		b.putString(Chanson.Id, ap.get(Chanson.Id));
+		Intent i = new Intent(v.getContext(), PaillardeView.class);
+		i.putExtra("data", b);
+		startActivity(i);
 	}
 }

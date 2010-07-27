@@ -19,7 +19,9 @@ public class PaillardeMenu extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(v.getContext(), PaillardeList.class);
-				startActivity(i);
+				Bundle b = new Bundle();
+				b.putString("filter", "");
+				i.putExtra("data", b);
 			}
 		});
 	}

@@ -24,6 +24,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public DatabaseHelper(Context context) {
 		super(context, DB_NAME, null, 1);
 		this.myContext = context;
+
+		try {
+			this.init();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -109,9 +115,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		openDataBase();
 	}
 
-	public List<Chanson> getTitres() {
+	public List<Chanson> getTitres(String filter) {
 		List<Chanson> data = new LinkedList<Chanson>();
-
+		// TODO : Gérer le filtre.
 		String allTitresQuery = "select ch.id, ch.titre from chanson ch order by ch.titre";
 		Cursor d = myDatabase.rawQuery(allTitresQuery, null);
 
