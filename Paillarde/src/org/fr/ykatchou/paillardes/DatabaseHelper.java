@@ -121,4 +121,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		}
 		return data;
 	}
+
+	public Chanson getChanson(Long id) {
+		Chanson data = new Chanson();
+		String[] params = new String[1];
+		String getChansonQuery = "select ch.* from chanson ch where ch.id = ?s";
+		params[0] = String.valueOf(id);
+		Cursor d = myDatabase.rawQuery(getChansonQuery, params);
+
+		if (d.moveToNext()) {
+			data.put(Chanson.Id, d.getString(0));
+			data.put(Chanson.Titre, d.getString(1));
+			data.put(Chanson.Paroles, d.getString(2));
+			data.put(Chanson.url, d.getString(3));
+		}
+		return data;
+	}
 }
