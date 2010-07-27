@@ -104,15 +104,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				SQLiteDatabase.OPEN_READONLY);
 	}
 
+	public void init() throws IOException {
+		createDataBase();
+		openDataBase();
+	}
+
 	public List<Chanson> getTitres() {
 		List<Chanson> data = new LinkedList<Chanson>();
 
 		String allTitresQuery = "select ch.id, ch.titre from chanson ch order by ch.titre";
 		Cursor d = myDatabase.rawQuery(allTitresQuery, null);
 
-		while (!d.isAfterLast()) {
-			Chanson c = new Chanson(d.getLong(0), d.getString(1));
-			data.add(c);
+		if (d.moveToFirst()) {
+			while (d.moveToNext()) {
+				Chanson c = new Chanson(d.getLong(0), d.getString(1));
+				data.add(c);
+			}
 		}
 
 		return data;

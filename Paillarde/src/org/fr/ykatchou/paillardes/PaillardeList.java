@@ -1,5 +1,6 @@
 package org.fr.ykatchou.paillardes;
 
+import java.io.IOException;
 import java.util.List;
 
 import android.app.ListActivity;
@@ -14,24 +15,25 @@ public class PaillardeList extends ListActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-
-		// Bundle b = getIntent().getBundleExtra("data");
-		// String filter = b.getString("filter");
 
 		dbhelp = new DatabaseHelper(this);
 
-		List<Chanson> datalist = dbhelp.getTitres();
+		try {
+			dbhelp.init();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+		List<Chanson> datalist = dbhelp.getTitres();
 		if (datalist.size() == 0) {
 			Toast.makeText(this, "Pas de résultats", Toast.LENGTH_LONG).show();
 		} else {
-			SimpleAdapter notes = new SimpleAdapter(this, datalist,
+			SimpleAdapter titres = new SimpleAdapter(this, datalist,
 					R.layout.paillardelist, new String[] { Chanson.Titre },
 					new int[] { R.id.ch_titre });
-
-			this.setListAdapter(notes);
+			this.setListAdapter(titres);
 		}
 	}
 
