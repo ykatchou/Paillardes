@@ -2,4 +2,5 @@
 <resources>
     <string name="hello">Hello World, PaillardeMenu!</string>
     <string name="app_name">Paillardes</string>
+    <string name="btn_list">Liste des chansons</string>
 </resources>
