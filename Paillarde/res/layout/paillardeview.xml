@@ -8,7 +8,8 @@
   		android:textSize="@dimen/ch_titre" android:gravity="center"
   		android:layout_width="fill_parent" android:layout_height="wrap_content"/>
   		
-  		<TextView android:id="@+id/ch_paroles" android:textColor="@color/white" android:textSize="@dimen/ch_paroles"
+  		<TextView android:id="@+id/ch_paroles" android:gravity="center_horizontal" 
+  		android:textColor="@color/white" android:textSize="@dimen/ch_paroles"
   		android:layout_width="fill_parent" android:layout_height="wrap_content"/>
 	
 		<TextView android:layout_width="fill_parent" android:layout_height="@dimen/ch_paroles"/>

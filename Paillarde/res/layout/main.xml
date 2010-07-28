@@ -10,6 +10,9 @@
     android:text="@string/btn_list" android:id="@+id/btn_list"/>
     
     <Button android:layout_height="wrap_content" android:layout_width="fill_parent"
+    android:text="@string/btn_search" android:id="@+id/btn_search"/>
+    
+    <Button android:layout_height="wrap_content" android:layout_width="fill_parent"
     android:text="@string/btn_about" android:id="@+id/btn_about"/>
     
     <Button android:layout_height="wrap_content" android:layout_width="fill_parent"

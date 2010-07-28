@@ -31,6 +31,14 @@ public class PaillardeMenu extends Activity {
 			}
 		});
 
+		b = (Button) findViewById(R.id.btn_search);
+		b.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onSearchRequested();
+			}
+		});
+
 		b = (Button) findViewById(R.id.btn_about);
 		b.setOnClickListener(new OnClickListener() {
 			@Override
