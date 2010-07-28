@@ -13,4 +13,6 @@
     
     <string name="about_titre">Paillardes - A propos</string>
     <string name="about_texte">Réalisé par Yoann Katchourine.\nApplication sous licence GPL v3.\nL\'image de la faluche provient de wikimedia.org.\n</string>
+    
+    <string name="search_hint">Recherche parmis les titres et paroles.</string>
 </resources>
