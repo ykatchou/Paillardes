@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, PaillardeMenu!</string>
     <string name="app_name">Paillardes</string>
     
     <string name="list_titre">Paillardes - Liste des chansons</string>
@@ -12,7 +11,7 @@
     <string name="btn_retour">Retour au menu</string>
     
     <string name="about_titre">Paillardes - A propos</string>
-    <string name="about_texte">Réalisé par Yoann Katchourine.\nApplication sous licence GPL v3.\nL\'image de la faluche provient de wikimedia.org.\n</string>
+    <string name="about_texte">\nRéalisé par Yoann Katchourine.\nSciences à l\'UVSQ et Ingénieur EFREI 2010.\nEt Amélie Tugayé, Médecine, Paris Ouest.\n\n\nApplication sous licence GPL v3.\n\nLes images sont issues de wikimedia.org.\n</string>
     
     <string name="search_hint">Recherche parmis les titres et paroles.</string>
 </resources>
