@@ -116,11 +116,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		openDataBase();
 	}
 
-	public List<Chanson> getTitres(String filter) {
+	public List<Chanson> getTitres() {
 		List<Chanson> data = new LinkedList<Chanson>();
-		// TODO : Gérer le filtre.
 		String allTitresQuery = "select ch.id, ch.titre from chanson ch order by ch.titre";
 		Cursor d = myDatabase.rawQuery(allTitresQuery, null);
+		while (d.moveToNext()) {
+			Chanson c = new Chanson(d.getLong(0), d.getString(1));
+			data.add(c);
+		}
+		return data;
+	}
+
+	public List<Chanson> getTitres(String filter) {
+		if (filter == null || filter == "")
+			return getTitres();
+
+		List<Chanson> data = new LinkedList<Chanson>();
+
+		String allTitresQuery = "select ch.* from chanson ch where ch.titre like ? or ch.paroles like ? order by ch.titre";
+		String[] params = new String[2];
+
+		params[0] = "%" + filter + "%";
+		params[1] = "%" + filter + "%";
+
+		Cursor d = myDatabase.rawQuery(allTitresQuery, params);
 
 		while (d.moveToNext()) {
 			Chanson c = new Chanson(d.getLong(0), d.getString(1));

@@ -21,20 +21,23 @@ public class PaillardeList extends ListActivity {
 		Intent intent = getIntent();
 		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 			filtre = intent.getStringExtra(SearchManager.QUERY);
+		} else {
+			filtre = "";
 		}
 
 		List<Chanson> datalist = Chanson.dbhelp.getTitres(filtre);
 		if (datalist.size() == 0) {
 			Toast.makeText(this, "Pas de résultats", Toast.LENGTH_LONG).show();
+			finish();
 		} else {
 			if (datalist.size() == 1) {
 				Chanson ch = datalist.get(0);
 				Intent i = new Intent(this, PaillardeView.class);
-				Bundle b = getIntent().getBundleExtra("data");
+				Bundle b = new Bundle();
 				b.putString(Chanson.Id, ch.get(Chanson.Id));
 				i.putExtra("data", b);
 				startActivity(i);
-
+				finish();
 			} else {
 				SimpleAdapter titres = new SimpleAdapter(this, datalist,
 						R.layout.paillardelist, new String[] { Chanson.Titre,
