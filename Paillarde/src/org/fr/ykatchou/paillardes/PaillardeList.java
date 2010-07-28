@@ -48,10 +48,12 @@ public class PaillardeList extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 
+		Bundle b = new Bundle();
 		Intent i = new Intent(v.getContext(), PaillardeView.class);
-		Bundle b = getIntent().getBundleExtra("data");
+
 		Chanson ch = Chanson.dbhelp.getTitres(filtre).get(position);
 		b.putString(Chanson.Id, ch.get(Chanson.Id));
+
 		i.putExtra("data", b);
 		startActivity(i);
 	}
