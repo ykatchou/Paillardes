@@ -47,7 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 	}
 
-	public void createDataBase() throws IOException {
+	private void createDataBase() throws IOException {
 		boolean dbExist = checkDatabase();
 		if (dbExist) {
 			// do nothing - database already exist
@@ -103,7 +103,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		myInput.close();
 	}
 
-	public void openDataBase() throws SQLException {
+	private void openDataBase() throws SQLException {
 		// Open the database
 		String myPath = DB_PATH + DB_NAME;
 		myDatabase = SQLiteDatabase.openDatabase(myPath, null,
@@ -111,7 +111,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	public void init() throws IOException {
-		createDataBase();
+		if (!checkDatabase())
+			createDataBase();
 		openDataBase();
 	}
 
@@ -131,7 +132,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public Chanson getChanson(Long id) {
 		Chanson data = new Chanson();
 		String[] params = new String[1];
-		String getChansonQuery = "select ch.* from chanson ch where ch.id = ?s";
+		String getChansonQuery = "select ch.* from chanson ch where ch.id = ?";
 		params[0] = String.valueOf(id);
 		Cursor d = myDatabase.rawQuery(getChansonQuery, params);
 
@@ -142,5 +143,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			data.put(Chanson.url, d.getString(3));
 		}
 		return data;
+	}
+
+	public Long getChansonCount() {
+		String getCountQuery = "select count(*) from chanson";
+		Cursor d = myDatabase.rawQuery(getCountQuery, null);
+
+		if (d.moveToNext())
+			return d.getLong(0);
+
+		return Long.valueOf(0);
 	}
 }

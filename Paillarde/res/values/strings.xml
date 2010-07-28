@@ -2,5 +2,13 @@
 <resources>
     <string name="hello">Hello World, PaillardeMenu!</string>
     <string name="app_name">Paillardes</string>
+    
+    <string name="list_titre">Paillardes - Liste des chansons</string>
     <string name="btn_list">Liste des chansons</string>
+    <string name="btn_about">A propos</string>
+    <string name="btn_quit">Quitter</string>
+    <string name="btn_retour">Retour au menu</string>
+    
+    <string name="about_titre">Paillardes - A propos</string>
+    <string name="about_texte">Réalisé par Yoann Katchourine. Application sous licence GPL v3. L\'image de faluche provient de wikimedia.org.</string>
 </resources>

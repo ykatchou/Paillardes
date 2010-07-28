@@ -12,8 +12,9 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".PaillardeList" />
+        <activity android:name=".PaillardeList" android:label="@string/list_titre" />
         <activity android:name=".PaillardeView" />
+        <activity android:name=".About" />
 
     </application>
     <uses-sdk android:minSdkVersion="3" />

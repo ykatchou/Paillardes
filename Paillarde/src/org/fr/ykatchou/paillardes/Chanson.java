@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class Chanson implements Map<String, String> {
+	public static DatabaseHelper dbhelp;
+
 	private final HashMap<String, String> data;
 
 	public static final String Id = "ID";

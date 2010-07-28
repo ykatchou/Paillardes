@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
+    android:layout_width="fill_parent" android:layout_height="fill_parent">
     
-    <Button android:layout_height="wrap_content" android:layout_width="wrap_content"
+    <ImageView android:layout_height="wrap_content" android:layout_width="fill_parent"
+    android:src="@drawable/faluche" android:scaleType="fitCenter" android:adjustViewBounds="true" />
+
+    <Button android:layout_height="wrap_content" android:layout_width="fill_parent"
     android:text="@string/btn_list" android:id="@+id/btn_list"/>
+    
+    <Button android:layout_height="wrap_content" android:layout_width="fill_parent"
+    android:text="@string/btn_about" android:id="@+id/btn_about"/>
+    
+    <Button android:layout_height="wrap_content" android:layout_width="fill_parent"
+    android:text="@string/btn_quit" android:id="@+id/btn_quit"/>
 </LinearLayout>

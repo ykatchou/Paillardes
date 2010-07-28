@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content" android:layout_height="wrap_content">
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+  android:layout_width="wrap_content" android:layout_height="wrap_content">
+  
+  <TextView android:text="@string/about_titre" android:textColor="@color/white" android:textSize="@dimen/about_titre"
+  android:layout_width="wrap_content" android:layout_height="wrap_content" />
+  
+  <TextView android:text="@string/about_texte" android:textColor="@color/white" android:textSize="@dimen/about_texte"
+  android:layout_width="wrap_content" android:layout_height="wrap_content" />
+  
+  <Button android:id="@+id/btn_retour" android:text="@string/btn_retour"
+  android:textSize="@dimen/btn_retour"
+  android:layout_width="fill_parent" android:layout_height="wrap_content" />
+  
+  </LinearLayout>
+</ScrollView>
