@@ -2,12 +2,13 @@
 <resources>
 
 <dimen name="list_titre_size">20sp</dimen>
+<dimen name="list_item_height">50sp</dimen>
 
-<dimen name="ch_titre">20sp</dimen>
-<dimen name="ch_paroles">14sp</dimen>
+<dimen name="ch_titre">24sp</dimen>
+<dimen name="ch_paroles">16sp</dimen>
 
 <dimen name="about_titre">20sp</dimen>
-<dimen name="about_texte">14sp</dimen>
+<dimen name="about_texte">16sp</dimen>
 
 <dimen name="btn_retour">16sp</dimen>
 </resources>
