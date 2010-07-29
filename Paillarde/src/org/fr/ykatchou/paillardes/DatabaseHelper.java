@@ -75,8 +75,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			checkDB = SQLiteDatabase.openDatabase(myPath, null,
 					SQLiteDatabase.OPEN_READONLY);
 		} catch (SQLiteException e) {
-
-			// database does't exist yet.
 		}
 		if (checkDB != null) {
 			checkDB.close();
@@ -113,6 +111,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void init() throws IOException {
 		if (!checkDatabase())
 			createDataBase();
+		copyDataBase();
 		openDataBase();
 	}
 
