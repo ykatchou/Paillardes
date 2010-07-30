@@ -1,0 +1,8 @@
+Bréviaire de chansons paillardes, chansons à boire et chants militaire.
+
+Cette application ne contient que les chants les plus connus.
+N'hésitez pas à me contacter pour en rajouter d'autres.
+
+Version en beta. Signalez-moi les problèmes que vous rencontrez !
+
+Application sous GPL v3.
