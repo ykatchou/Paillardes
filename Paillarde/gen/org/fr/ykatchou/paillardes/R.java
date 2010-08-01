@@ -52,6 +52,7 @@ public final class R {
         public static final int btn_retour=0x7f070006;
         public static final int btn_search=0x7f070003;
         public static final int list_titre=0x7f070001;
+        public static final int menu_url=0x7f07000a;
         public static final int search_hint=0x7f070009;
     }
     public static final class xml {

@@ -27,7 +27,7 @@ public class PaillardeList extends ListActivity {
 
 		List<Chanson> datalist = Chanson.dbhelp.getTitres(filtre);
 		if (datalist.size() == 0) {
-			Toast.makeText(this, "Pas de résultats", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Pas de rÃ©sultats", Toast.LENGTH_LONG).show();
 			finish();
 		} else {
 			if (datalist.size() == 1) {

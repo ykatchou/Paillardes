@@ -2,7 +2,7 @@
 <resources>
 
 <dimen name="list_titre_size">20sp</dimen>
-<dimen name="list_item_height">50sp</dimen>
+<dimen name="list_item_height">50dp</dimen>
 
 <dimen name="ch_titre">24sp</dimen>
 <dimen name="ch_paroles">16sp</dimen>
