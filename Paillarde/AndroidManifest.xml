@@ -3,6 +3,9 @@
       package="org.fr.ykatchou.paillardes"
       android:versionCode="1"
       android:versionName="1.1">
+      
+    <uses-sdk android:minSdkVersion="3" />
+    
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <activity android:name=".PaillardeMenu"
                   android:label="@string/app_name">
@@ -25,14 +28,5 @@
 		 <meta-data android:name="android.app.default_searchable"
                android:value=".PaillardeList" />
     </application>
-    
-    <uses-sdk android:minSdkVersion="3" />
-    
-   <supports-screens android:smallScreens="true"
-                 android:normalScreens="true" 
-                 android:largeScreens="true" 
-                 android:anyDensity="true"/>
-
 	<uses-permission android:name="android.permission.INTERNET" />
-
 </manifest> 

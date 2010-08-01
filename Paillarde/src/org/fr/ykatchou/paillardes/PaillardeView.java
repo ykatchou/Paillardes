@@ -1,7 +1,5 @@
 package org.fr.ykatchou.paillardes;
 
-import java.net.URI;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
