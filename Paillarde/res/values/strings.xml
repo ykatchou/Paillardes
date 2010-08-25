@@ -10,10 +10,12 @@
     <string name="btn_quit">Quitter</string>
     <string name="btn_retour">Retour au menu</string>
     
+    <string name="btn_site_web">Voir dans le navigateur web</string>
+    
     <string name="about_titre">Paillardes - A propos</string>
     <string name="about_texte">\nCette application propose les paroles des chansons paillardes les plus connus afin de prolonger ces coutumes estudiantines. S\'il manque des chansons envoyez moi un mail je les rajouterais.\n\nRéalisé par Yoann Katchourine.\nSciences à l\'UVSQ et Ingénieur EFREI 2010.\nEt Amélie Tugayé, Médecine, Paris Ouest.\n\n\nApplication sous licence GPL v3.\n\nLes images sont issues de wikimedia.org.\n</string>
     
     <string name="search_hint">Recherche parmis les titres et paroles.</string>
     
-    <string name="menu_url">Voir la source</string>
+    <string name="menu_url">Voir dans le navigateur web</string>
 </resources>

@@ -40,6 +40,21 @@ public class PaillardeView extends Activity {
 				finish();
 			}
 		});
+		
+		String url =tmp_chanson.get(Chanson.url);
+		btn = (Button) findViewById(R.id.btn_site_web);
+		if(url != null && url != ""){
+			btn.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					String url =tmp_chanson.get(Chanson.url);
+					Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+					startActivity(i);
+				}
+			});
+		}else{
+			btn.setEnabled(false);
+		}
 	}
 	
 	@Override

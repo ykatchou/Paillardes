@@ -13,4 +13,5 @@
 <dimen name="about_texte">16sp</dimen>
 
 <dimen name="btn_retour">16sp</dimen>
+<dimen name="btn_paroles">16sp</dimen>
 </resources>
