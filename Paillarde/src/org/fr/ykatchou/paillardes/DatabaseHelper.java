@@ -133,8 +133,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			if(!ids.contains(tmp_id)){
 				Chanson c = new Chanson(tmp_id, d.getString(1));
 				c.addTags(d.getString(2));
-				data.add(c);
 				ids.add(tmp_id);
+				data.add(c);
 			}else{
 				//Recherche de la chanson dans la liste
 				for(Chanson c : data){
@@ -154,7 +154,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		List<Chanson> data = new LinkedList<Chanson>();
 
-		String allTitresQuery = "select ch.* from chanson ch where ch.titre like ? or ch.paroles like ? order by ch.titre";
+		String allTitresQuery = "select ch.id, ch.titre,t.value as tags";
+		allTitresQuery += " from chanson ch join chansontag cht on ch.id = cht.chanson_id";
+		allTitresQuery += " join tag t on t.id = cht.tag_id";
+		allTitresQuery += " where ch.titre like ? or ch.paroles like ? ";
+		allTitresQuery += " order by ch.titre, tags";
 		String[] params = new String[2];
 
 		params[0] = "%" + filter + "%";
@@ -162,9 +166,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		Cursor d = myDatabase.rawQuery(allTitresQuery, params);
 
+		Set<Long> ids = new TreeSet<Long>();
+		Long tmp_id;
+		
 		while (d.moveToNext()) {
-			Chanson c = new Chanson(d.getLong(0), d.getString(1));
-			data.add(c);
+			tmp_id = d.getLong(0);
+			if(!ids.contains(tmp_id)){
+				Chanson c = new Chanson(tmp_id, d.getString(1));
+				c.addTags(d.getString(2));
+				ids.add(tmp_id);
+				data.add(c);
+			}else
+			{
+				//Recherche de la chanson dans la liste
+				for(Chanson c : data){
+					if(c.private_id.equals(tmp_id)){
+						c.addTags(d.getString(2));
+						break;
+					}
+				}	
+			}
 		}
 		return data;
 	}
