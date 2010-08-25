@@ -8,15 +8,15 @@
     	android:src="@drawable/faluche" android:scaleType="fitCenter" android:adjustViewBounds="true" />
 
     <Button android:layout_height="wrap_content" android:layout_width="fill_parent"
-    android:text="@string/btn_list" android:id="@+id/btn_list"/>
+    android:text="@string/btn_list" android:id="@+id/btn_list" android:textSize="@dimen/menu_text"/>
     
     <Button android:layout_height="wrap_content" android:layout_width="fill_parent"
-    android:text="@string/btn_search" android:id="@+id/btn_search"/>
+    android:text="@string/btn_search" android:id="@+id/btn_search" android:textSize="@dimen/menu_text"/>
     
     <Button android:layout_height="wrap_content" android:layout_width="fill_parent"
-    android:text="@string/btn_about" android:id="@+id/btn_about"/>
+    android:text="@string/btn_about" android:id="@+id/btn_about" android:textSize="@dimen/menu_text"/>
     
     <Button android:layout_height="wrap_content" android:layout_width="fill_parent"
-    android:text="@string/btn_quit" android:id="@+id/btn_quit"/>
+    android:text="@string/btn_quit" android:id="@+id/btn_quit" android:textSize="@dimen/menu_text"/>
 </LinearLayout>
 </ScrollView>

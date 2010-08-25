@@ -15,13 +15,14 @@ public final class R {
         public static final int white=0x7f050000;
     }
     public static final class dimen {
-        public static final int about_texte=0x7f060005;
-        public static final int about_titre=0x7f060004;
-        public static final int btn_retour=0x7f060006;
-        public static final int ch_paroles=0x7f060003;
-        public static final int ch_titre=0x7f060002;
-        public static final int list_item_height=0x7f060001;
-        public static final int list_titre_size=0x7f060000;
+        public static final int about_texte=0x7f060006;
+        public static final int about_titre=0x7f060005;
+        public static final int btn_retour=0x7f060007;
+        public static final int ch_paroles=0x7f060004;
+        public static final int ch_titre=0x7f060003;
+        public static final int list_item_height=0x7f060002;
+        public static final int list_titre_size=0x7f060001;
+        public static final int menu_text=0x7f060000;
     }
     public static final class drawable {
         public static final int faluche=0x7f020000;
