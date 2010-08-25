@@ -12,17 +12,20 @@ public final class R {
     }
     public static final class color {
         public static final int black=0x7f050001;
+        public static final int tags=0x7f050002;
         public static final int white=0x7f050000;
     }
     public static final class dimen {
-        public static final int about_texte=0x7f060006;
-        public static final int about_titre=0x7f060005;
-        public static final int btn_paroles=0x7f060008;
-        public static final int btn_retour=0x7f060007;
-        public static final int ch_paroles=0x7f060004;
-        public static final int ch_titre=0x7f060003;
+        public static final int about_texte=0x7f060008;
+        public static final int about_titre=0x7f060007;
+        public static final int btn_paroles=0x7f06000a;
+        public static final int btn_retour=0x7f060009;
+        public static final int ch_paroles=0x7f060006;
+        public static final int ch_titre=0x7f060005;
         public static final int list_item_height=0x7f060002;
-        public static final int list_titre_size=0x7f060001;
+        public static final int list_item_spacer=0x7f060001;
+        public static final int list_tags_size=0x7f060004;
+        public static final int list_titre_size=0x7f060003;
         public static final int menu_text=0x7f060000;
     }
     public static final class drawable {
@@ -38,8 +41,9 @@ public final class R {
         public static final int btn_quit=0x7f080004;
         public static final int btn_retour=0x7f080000;
         public static final int btn_search=0x7f080002;
-        public static final int btn_site_web=0x7f080007;
-        public static final int ch_paroles=0x7f080006;
+        public static final int btn_site_web=0x7f080008;
+        public static final int ch_paroles=0x7f080007;
+        public static final int ch_tags=0x7f080006;
         public static final int ch_titre=0x7f080005;
     }
     public static final class layout {

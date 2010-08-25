@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -117,11 +119,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	public List<Chanson> getTitres() {
 		List<Chanson> data = new LinkedList<Chanson>();
-		String allTitresQuery = "select ch.id, ch.titre from chanson ch order by ch.titre";
+		Set<Long> ids = new TreeSet<Long>();
+		Long tmp_id;
+
+		String allTitresQuery = "select ch.id, ch.titre,t.value as tags";
+		allTitresQuery += " from chanson ch join chansontag cht on ch.id = cht.chanson_id";
+		allTitresQuery += " join tag t on t.id = cht.tag_id order by ch.titre, tags";
+		
 		Cursor d = myDatabase.rawQuery(allTitresQuery, null);
 		while (d.moveToNext()) {
-			Chanson c = new Chanson(d.getLong(0), d.getString(1));
-			data.add(c);
+			tmp_id = d.getLong(0);
+			//Si l'on a déjà ajouté un des tags...
+			if(!ids.contains(tmp_id)){
+				Chanson c = new Chanson(tmp_id, d.getString(1));
+				c.addTags(d.getString(2));
+				data.add(c);
+				ids.add(tmp_id);
+			}else{
+				//Recherche de la chanson dans la liste
+				for(Chanson c : data){
+					if(c.private_id.equals(tmp_id)){
+						c.addTags(d.getString(2));
+						break;
+					}
+				}
+			}
 		}
 		return data;
 	}

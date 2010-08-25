@@ -41,7 +41,7 @@ public class PaillardeList extends ListActivity {
 			} else {
 				SimpleAdapter titres = new SimpleAdapter(this, datalist,
 						R.layout.paillardelist, new String[] { Chanson.Titre,
-								Chanson.Id }, new int[] { R.id.ch_titre });
+								Chanson.Tags, Chanson.Id }, new int[] { R.id.ch_titre, R.id.ch_tags });
 				this.setListAdapter(titres);
 			}
 		}

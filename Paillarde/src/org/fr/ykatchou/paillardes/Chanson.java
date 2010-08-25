@@ -10,10 +10,12 @@ public class Chanson implements Map<String, String> {
 
 	private final HashMap<String, String> data;
 
+	public Long private_id;
 	public static final String Id = "ID";
 	public static final String Titre = "TITRE";
 	public static final String Paroles = "PAROLES";
 	public static final String url = "URL";
+	public static final String Tags = "TAGS";
 
 	public Chanson() {
 		data = new HashMap<String, String>();
@@ -88,6 +90,7 @@ public class Chanson implements Map<String, String> {
 
 	public void setId(Long id) {
 		data.put(Chanson.Id, String.valueOf(id));
+		private_id = id;
 	}
 
 	public void setTitre(String titre) {
@@ -96,5 +99,18 @@ public class Chanson implements Map<String, String> {
 
 	public void setParoles(String paroles) {
 		data.put(Chanson.Paroles, paroles);
+	}
+	
+	public void setTags(String tags){
+		data.put(Chanson.Tags, tags);
+	}
+	
+	public void addTags(String tags){
+		String now = data.get(Chanson.Tags);
+		if(now != null && now != ""){
+			data.put(Chanson.Tags, now + ", " + tags.toLowerCase());
+		}else{
+			data.put(Chanson.Tags, tags);
+		}
 	}
 }
