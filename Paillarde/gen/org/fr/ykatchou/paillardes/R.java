@@ -16,30 +16,36 @@ public final class R {
         public static final int white=0x7f050000;
     }
     public static final class dimen {
-        public static final int about_texte=0x7f060008;
-        public static final int about_titre=0x7f060007;
-        public static final int btn_paroles=0x7f06000a;
-        public static final int btn_retour=0x7f060009;
-        public static final int ch_paroles=0x7f060006;
-        public static final int ch_titre=0x7f060005;
-        public static final int list_item_height=0x7f060002;
-        public static final int list_item_spacer=0x7f060001;
-        public static final int list_tags_size=0x7f060004;
-        public static final int list_titre_size=0x7f060003;
+        public static final int about_texte=0x7f06000c;
+        public static final int about_titre=0x7f06000b;
+        public static final int btn_margin_left=0x7f060003;
+        public static final int btn_margin_right=0x7f060002;
+        public static final int btn_margin_top=0x7f060001;
+        public static final int btn_paroles=0x7f06000e;
+        public static final int btn_retour=0x7f06000d;
+        public static final int ch_paroles=0x7f060009;
+        public static final int ch_titre=0x7f060008;
+        public static final int list_item_height=0x7f060005;
+        public static final int list_item_spacer=0x7f060004;
+        public static final int list_tags_size=0x7f060007;
+        public static final int list_titre_size=0x7f060006;
         public static final int menu_text=0x7f060000;
+        public static final int texte_margin=0x7f06000a;
     }
     public static final class drawable {
         public static final int faluche=0x7f020000;
         public static final int ic_menu_close_clear_cancel=0x7f020001;
         public static final int ic_menu_search=0x7f020002;
-        public static final int icon=0x7f020003;
-        public static final int title=0x7f020004;
+        public static final int ic_menu_send=0x7f020003;
+        public static final int icon=0x7f020004;
+        public static final int title=0x7f020005;
     }
     public static final class id {
         public static final int btn_about=0x7f080003;
         public static final int btn_list=0x7f080001;
+        public static final int btn_mail=0x7f080000;
         public static final int btn_quit=0x7f080004;
-        public static final int btn_retour=0x7f080000;
+        public static final int btn_retour=0x7f080009;
         public static final int btn_search=0x7f080002;
         public static final int btn_site_web=0x7f080008;
         public static final int ch_paroles=0x7f080007;
@@ -53,6 +59,7 @@ public final class R {
         public static final int paillardeview=0x7f030003;
     }
     public static final class string {
+        public static final int about_mail=0x7f07000a;
         public static final int about_texte=0x7f070009;
         public static final int about_titre=0x7f070008;
         public static final int app_name=0x7f070000;
@@ -63,8 +70,8 @@ public final class R {
         public static final int btn_search=0x7f070003;
         public static final int btn_site_web=0x7f070007;
         public static final int list_titre=0x7f070001;
-        public static final int menu_url=0x7f07000b;
-        public static final int search_hint=0x7f07000a;
+        public static final int menu_url=0x7f07000c;
+        public static final int search_hint=0x7f07000b;
     }
     public static final class xml {
         public static final int searchable=0x7f040000;

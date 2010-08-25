@@ -3,6 +3,10 @@
 
 <dimen name="menu_text">20sp</dimen>
 
+<dimen name="btn_margin_top">3sp</dimen>
+<dimen name="btn_margin_right">10sp</dimen>
+<dimen name="btn_margin_left">10sp</dimen>
+
 <dimen name="list_item_spacer">10sp</dimen>
 <dimen name="list_item_height">33sp</dimen>
 <dimen name="list_titre_size">19sp</dimen>
@@ -10,6 +14,7 @@
 
 <dimen name="ch_titre">24sp</dimen>
 <dimen name="ch_paroles">16sp</dimen>
+<dimen name="texte_margin">5sp</dimen>
 
 <dimen name="about_titre">20sp</dimen>
 <dimen name="about_texte">16sp</dimen>

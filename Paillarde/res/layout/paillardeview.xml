@@ -12,15 +12,17 @@
   		
   		<TextView android:id="@+id/ch_paroles" android:gravity="center_horizontal" 
   		android:textColor="@color/white" android:textSize="@dimen/ch_paroles"
+  		android:layout_marginLeft="@dimen/texte_margin" android:layout_marginRight="@dimen/texte_margin"
+  		android:layout_marginBottom="@dimen/ch_paroles"
   		android:layout_width="fill_parent" android:layout_height="wrap_content"/>
 	
-		<TextView android:layout_width="fill_parent" android:layout_height="@dimen/ch_paroles"/>
-	
 		<Button android:id="@+id/btn_site_web" android:text="@string/btn_site_web"
+		android:layout_marginLeft="@dimen/btn_margin_left" android:layout_marginRight="@dimen/btn_margin_right"
 		android:textColor="@color/black" android:textSize="@dimen/btn_paroles"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"/>
 		
 		<Button android:id="@+id/btn_retour" android:text="@string/btn_retour"
+		android:layout_marginLeft="@dimen/btn_margin_left" android:layout_marginRight="@dimen/btn_margin_right"
 		android:textColor="@color/black" android:textSize="@dimen/btn_paroles"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"/>
 	</LinearLayout>
