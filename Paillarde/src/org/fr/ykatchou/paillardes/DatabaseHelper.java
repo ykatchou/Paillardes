@@ -172,15 +172,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public Chanson getChanson(Long id) {
 		Chanson data = new Chanson();
 		String[] params = new String[1];
-		String getChansonQuery = "select ch.* from chanson ch where ch.id = ?";
+		
+		String getChansonQuery = "select ch.id, ch.titre, ch.paroles, ch.url, t.value";
+		getChansonQuery +=" from chanson ch join chansontag cht on cht.chanson_id = ch.id";
+		getChansonQuery +=" join tag t on t.id = cht.tag_id where ch.id = ? ";
+		
 		params[0] = String.valueOf(id);
 		Cursor d = myDatabase.rawQuery(getChansonQuery, params);
 
-		if (d.moveToNext()) {
-			data.put(Chanson.Id, d.getString(0));
-			data.put(Chanson.Titre, d.getString(1));
-			data.put(Chanson.Paroles, d.getString(2));
-			data.put(Chanson.url, d.getString(3));
+		while (d.moveToNext()) {
+			if(!data.containsKey(Chanson.Id)){
+				data.setId(d.getLong(0));
+				data.put(Chanson.Titre, d.getString(1));
+				data.put(Chanson.Paroles, d.getString(2));
+				data.put(Chanson.url, d.getString(3));
+			}
+			data.addTags(d.getString(4));
 		}
 		return data;
 	}
