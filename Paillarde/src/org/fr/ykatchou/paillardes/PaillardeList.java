@@ -11,6 +11,12 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+/**
+ * Paillarde
+ * Application sous GPL v3
+ * @author ykatchou
+ * Cettte classe affiche la liste des chansons.
+ */
 public class PaillardeList extends ListActivity {
 	public static String filtre;
 

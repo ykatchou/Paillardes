@@ -11,6 +11,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+
+/**
+ * Paillarde
+ * Application sous GPL v3
+ * @author ykatchou
+ * Cettte classe affiche les paroles d'une chanson.
+ */
 public class PaillardeView extends Activity {
 	private Chanson tmp_chanson;
 	

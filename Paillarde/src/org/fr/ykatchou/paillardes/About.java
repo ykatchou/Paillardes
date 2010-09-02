@@ -1,13 +1,19 @@
 package org.fr.ykatchou.paillardes;
 
 import android.app.Activity;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-
+/**
+ * Paillarde
+ * Application sous GPL v3
+ * @author ykatchou
+ * Cettte classe contient le a propos.
+ */
 public class About extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

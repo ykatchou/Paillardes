@@ -5,6 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Paillarde
+ * Application sous GPL v3
+ * @author ykatchou
+ * Cettte classe contient une chanson.
+ */
 public class Chanson implements Map<String, String> {
 	public static DatabaseHelper dbhelp;
 

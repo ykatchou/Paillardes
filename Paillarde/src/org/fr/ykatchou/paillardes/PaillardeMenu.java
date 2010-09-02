@@ -7,6 +7,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/**
+ * Paillarde
+ * Application sous GPL v3
+ * @author ykatchou
+ * Cettte classe affiche le menu principal.
+ */
 public class PaillardeMenu extends Activity {
 	/** Called when the activity is first created. */
 	@Override

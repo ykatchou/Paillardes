@@ -16,6 +16,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * Paillarde
+ * Application sous GPL v3
+ * @author ykatchou
+ * Cettte classe aide à l'accès à la base de données.
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
 	// The Android's default system path of your application database.
 	private static String DB_PATH = "/data/data/org.fr.ykatchou.paillardes/databases/";
