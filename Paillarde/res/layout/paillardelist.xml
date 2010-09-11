@@ -12,6 +12,11 @@
 	android:orientation="horizontal" android:layout_width="fill_parent"
 	android:layout_height="wrap_content">
 	
+		<TextView android:id="@+id/ch_midi" android:textSize="@dimen/list_tags_size"
+		android:textColor="@color/midi_info" android:gravity="left" 
+		android:paddingLeft="@dimen/list_item_spacer"
+		android:layout_width="@dimen/list_midi_width" android:layout_height="wrap_content" />
+	
 		<TextView android:id="@+id/ch_tags" android:textSize="@dimen/list_tags_size"
 		android:textColor="@color/tags" android:gravity="right" 
 		android:paddingRight="@dimen/list_item_spacer"

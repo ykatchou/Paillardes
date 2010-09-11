@@ -138,7 +138,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			//Si l'on a déjà ajouté un des tags...
 			if(!ids.contains(tmp_id)){
 				Chanson c = new Chanson(tmp_id, d.getString(1));
-				c.put(Chanson.Midi,d.getString(3));
+				ChansonHelper.GenerateMidi(c, d.getString(3));
 				
 				c.addTags(d.getString(2));
 				ids.add(tmp_id);
@@ -181,7 +181,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			tmp_id = d.getLong(0);
 			if(!ids.contains(tmp_id)){
 				Chanson c = new Chanson(tmp_id, d.getString(1));
-				c.put(Chanson.Midi, d.getString(3));
+				ChansonHelper.GenerateMidi(c, d.getString(3));
 				
 				c.addTags(d.getString(2));
 				ids.add(tmp_id);
@@ -217,7 +217,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				data.put(Chanson.Titre, d.getString(1));
 				data.put(Chanson.Paroles, d.getString(2));
 				data.put(Chanson.url, d.getString(3));
-				data.put(Chanson.Midi, d.getString(5));
+				ChansonHelper.GenerateMidi(data, d.getString(5));
 			}
 			data.addTags(d.getString(4));
 		}

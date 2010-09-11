@@ -12,25 +12,27 @@ public final class R {
     }
     public static final class color {
         public static final int black=0x7f060001;
+        public static final int midi_info=0x7f060003;
         public static final int tags=0x7f060002;
         public static final int white=0x7f060000;
     }
     public static final class dimen {
-        public static final int about_texte=0x7f07000c;
-        public static final int about_titre=0x7f07000b;
+        public static final int about_texte=0x7f07000d;
+        public static final int about_titre=0x7f07000c;
         public static final int btn_margin_left=0x7f070003;
         public static final int btn_margin_right=0x7f070002;
         public static final int btn_margin_top=0x7f070001;
-        public static final int btn_paroles=0x7f07000e;
-        public static final int btn_retour=0x7f07000d;
-        public static final int ch_paroles=0x7f070009;
-        public static final int ch_titre=0x7f070008;
+        public static final int btn_paroles=0x7f07000f;
+        public static final int btn_retour=0x7f07000e;
+        public static final int ch_paroles=0x7f07000a;
+        public static final int ch_titre=0x7f070009;
         public static final int list_item_height=0x7f070005;
         public static final int list_item_spacer=0x7f070004;
+        public static final int list_midi_width=0x7f070008;
         public static final int list_tags_size=0x7f070007;
         public static final int list_titre_size=0x7f070006;
         public static final int menu_text=0x7f070000;
-        public static final int texte_margin=0x7f07000a;
+        public static final int texte_margin=0x7f07000b;
     }
     public static final class drawable {
         public static final int faluche=0x7f020000;
@@ -42,13 +44,14 @@ public final class R {
         public static final int btn_about=0x7f090003;
         public static final int btn_list=0x7f090001;
         public static final int btn_mail=0x7f090000;
-        public static final int btn_play_midi=0x7f090007;
+        public static final int btn_play_midi=0x7f090008;
         public static final int btn_quit=0x7f090004;
-        public static final int btn_retour=0x7f09000a;
+        public static final int btn_retour=0x7f09000b;
         public static final int btn_search=0x7f090002;
-        public static final int btn_site_web=0x7f090009;
-        public static final int ch_paroles=0x7f090008;
-        public static final int ch_tags=0x7f090006;
+        public static final int btn_site_web=0x7f09000a;
+        public static final int ch_midi=0x7f090006;
+        public static final int ch_paroles=0x7f090009;
+        public static final int ch_tags=0x7f090007;
         public static final int ch_titre=0x7f090005;
     }
     public static final class layout {

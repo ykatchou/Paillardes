@@ -11,6 +11,7 @@
 <dimen name="list_item_height">33sp</dimen>
 <dimen name="list_titre_size">19sp</dimen>
 <dimen name="list_tags_size">12sp</dimen>
+<dimen name="list_midi_width">50sp</dimen>
 
 <dimen name="ch_titre">24sp</dimen>
 <dimen name="ch_paroles">16sp</dimen>

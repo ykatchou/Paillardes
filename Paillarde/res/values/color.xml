@@ -3,4 +3,5 @@
 <color name="white">#FFFFFF</color>
 <color name="black">#000000</color>
 <color name="tags">#AAAAAA</color>
+<color name="midi_info">#FF5F5F</color>
 </resources>
