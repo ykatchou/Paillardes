@@ -17,7 +17,7 @@
     <string name="btn_site_web">Voir dans le navigateur web</string>
     
     <string name="about_titre">Paillardes - A propos</string>
-    <string name="about_texte">Cette application propose les paroles des chansons paillardes les plus connus afin de prolonger ces coutumes estudiantines.\n\nS\'il manque des chansons envoyez-moi un mail je les rajouterais. L\'ajout des mélodies est en cours de réalisation.\n\nRéalisé par Yoann Katchourine,\n\tInformatique à l\'UVSQ,\n\tIngénieur EFREI 2010.\n\nApplication sous licence GPL v3.\nLes images sont issues de wikimedia.org.\n</string>
+    <string name="about_texte">Cette application propose les paroles des chansons paillardes les plus connus afin de prolonger ces coutumes estudiantines.\n\nS\'il manque des chansons envoyez-moi un mail je les rajouterais. Si vous avez des mélodies manquantes n'hésitez pas !\n\nRéalisé par Yoann Katchourine,\n\tInformatique à l\'UVSQ,\n\tIngénieur EFREI 2010.\n\nApplication sous licence GPL v3.\nLes images sont issues de wikimedia.org.\n</string>
     <string name="about_mail">Contactez-moi</string>
     
     <string name="search_hint">Recherche une chanson.</string>
