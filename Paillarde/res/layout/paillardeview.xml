@@ -9,6 +9,9 @@
 		android:background="@drawable/title"
   		android:layout_width="fill_parent" android:layout_height="wrap_content"/>
   		
+  		<Button android:id="@+id/btn_play_midi" android:text="@string/btn_play"
+  		android:layout_marginLeft="@dimen/texte_margin" android:layout_marginRight="@dimen/texte_margin"
+  		android:layout_width="fill_parent" android:layout_height="wrap_content"/>
   		
   		<TextView android:id="@+id/ch_paroles" android:gravity="center_horizontal" 
   		android:textColor="@color/white" android:textSize="@dimen/ch_paroles"

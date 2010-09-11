@@ -1,9 +1,15 @@
 package org.fr.ykatchou.paillardes;
 
+import java.io.FileDescriptor;
+import java.io.IOException;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +27,8 @@ import android.widget.TextView;
 public class PaillardeView extends Activity {
 	private Chanson tmp_chanson;
 	
+	private MediaPlayer mp;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,14 +40,46 @@ public class PaillardeView extends Activity {
 
 		tmp_chanson = Chanson.dbhelp.getChanson(Long.valueOf(Id));
 
-		// / BINDINGS
-		// ///////////////////////////////////////////////////////
+		bind_data();
+		bind_button_play_midi();
+		bind_button_retour();
+		bind_button_site_web();
+		
+		//Load MIDI
+		mp = MediaPlayer.create(this, R.raw.pai156);
+	}
+
+	// / BINDINGS
+	// ///////////////////////////////////////////////////////
+
+	
+	public void bind_data(){
 		TextView tv = (TextView) findViewById(R.id.ch_titre);
 		tv.setText(tmp_chanson.get(Chanson.Titre));
 
 		tv = (TextView) findViewById(R.id.ch_paroles);
 		tv.setText(tmp_chanson.get(Chanson.Paroles));
-
+	}
+	
+	public void bind_button_play_midi(){
+		Button btn = (Button) findViewById(R.id.btn_play_midi);
+		btn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(mp.isPlaying()){
+					mp.pause();
+					((Button)v).setText(R.string.btn_play);
+				}else{
+					mp.setLooping(true);
+					mp.seekTo(0);
+					mp.start();
+					((Button)v).setText(R.string.stop);
+				}
+			}
+		});
+	}
+	
+	public void bind_button_retour(){
 		Button btn = (Button) findViewById(R.id.btn_retour);
 		btn.setOnClickListener(new OnClickListener() {
 			@Override
@@ -47,9 +87,11 @@ public class PaillardeView extends Activity {
 				finish();
 			}
 		});
-		
+	}
+	
+	public void bind_button_site_web(){
 		String url =tmp_chanson.get(Chanson.url);
-		btn = (Button) findViewById(R.id.btn_site_web);
+		Button btn = (Button) findViewById(R.id.btn_site_web);
 		if(url != null && url != ""){
 			btn.setOnClickListener(new OnClickListener() {
 				@Override
@@ -62,6 +104,12 @@ public class PaillardeView extends Activity {
 		}else{
 			btn.setEnabled(false);
 		}
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		mp.release();
 	}
 	
 	@Override

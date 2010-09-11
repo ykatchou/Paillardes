@@ -9,6 +9,10 @@
     <string name="btn_about">A propos</string>
     <string name="btn_quit">Quitter</string>
     <string name="btn_retour">Retour au menu</string>
+    <string name="btn_play">Jouer la mélodie</string>
+    
+    <string name="play">Jouer</string>
+    <string name="stop">Arrêter</string>
     
     <string name="btn_site_web">Voir dans le navigateur web</string>
     
