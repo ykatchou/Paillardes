@@ -22,6 +22,7 @@ public class Chanson implements Map<String, String> {
 	public static final String Paroles = "PAROLES";
 	public static final String url = "URL";
 	public static final String Tags = "TAGS";
+	public static final String Midi = "MIDI";
 
 	public Chanson() {
 		data = new HashMap<String, String>();

@@ -128,7 +128,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		Set<Long> ids = new TreeSet<Long>();
 		Long tmp_id;
 
-		String allTitresQuery = "select ch.id, ch.titre,t.value as tags";
+		String allTitresQuery = "select ch.id, ch.titre,t.value as tags, ch.midi";
 		allTitresQuery += " from chanson ch join chansontag cht on ch.id = cht.chanson_id";
 		allTitresQuery += " join tag t on t.id = cht.tag_id order by ch.titre, tags";
 		
@@ -138,6 +138,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			//Si l'on a déjà ajouté un des tags...
 			if(!ids.contains(tmp_id)){
 				Chanson c = new Chanson(tmp_id, d.getString(1));
+				c.put(Chanson.Midi,d.getString(3));
+				
 				c.addTags(d.getString(2));
 				ids.add(tmp_id);
 				data.add(c);
@@ -160,7 +162,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		List<Chanson> data = new LinkedList<Chanson>();
 
-		String allTitresQuery = "select ch.id, ch.titre,t.value as tags";
+		String allTitresQuery = "select ch.id, ch.titre,t.value as tags, ch.midi";
 		allTitresQuery += " from chanson ch join chansontag cht on ch.id = cht.chanson_id";
 		allTitresQuery += " join tag t on t.id = cht.tag_id";
 		allTitresQuery += " where ch.titre like ? or ch.paroles like ? ";
@@ -179,6 +181,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			tmp_id = d.getLong(0);
 			if(!ids.contains(tmp_id)){
 				Chanson c = new Chanson(tmp_id, d.getString(1));
+				c.put(Chanson.Midi, d.getString(3));
+				
 				c.addTags(d.getString(2));
 				ids.add(tmp_id);
 				data.add(c);
@@ -200,7 +204,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		Chanson data = new Chanson();
 		String[] params = new String[1];
 		
-		String getChansonQuery = "select ch.id, ch.titre, ch.paroles, ch.url, t.value";
+		String getChansonQuery = "select ch.id, ch.titre, ch.paroles, ch.url, t.value, ch.midi";
 		getChansonQuery +=" from chanson ch join chansontag cht on cht.chanson_id = ch.id";
 		getChansonQuery +=" join tag t on t.id = cht.tag_id where ch.id = ? ";
 		
@@ -213,6 +217,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				data.put(Chanson.Titre, d.getString(1));
 				data.put(Chanson.Paroles, d.getString(2));
 				data.put(Chanson.url, d.getString(3));
+				data.put(Chanson.Midi, d.getString(5));
 			}
 			data.addTags(d.getString(4));
 		}
