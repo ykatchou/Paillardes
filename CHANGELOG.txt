@@ -1,0 +1,38 @@
+-----------------------------------------------------------------------
+---                            R O A D M A P                        ---
+-----------------------------------------------------------------------
+
++ Création d'un outil de gestion des chansons (administration)
++ Ajout de chansons
++ Ajout de mélodies
++ Correction Midis
+    - 31 du mois d'Aout il manque le refrain
++ Nouveaux menus
++ Choix des catégories
++ Choix des filières
++ Astuces
++ Partages
+    - SMS
+    - eMail
+    - Facebook
+    - ...
+
+-----------------------------------------------------------------------
+---                         H I S T O R I Q U E                     ---
+-----------------------------------------------------------------------
+0.5
+    Ajout des mélodies
+
+0.4
+    Nouvelles chansons
+
+0.3
+    Nouvelles chansons
+    Cosmetics (Retouches graphiques)
+
+0.2
+    Nouvelles chansons
+    Cosmetics (Retouches graphiques)
+
+0.1
+    Version initiale
