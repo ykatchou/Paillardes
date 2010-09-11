@@ -61,14 +61,18 @@ public final class R {
         public static final int paillardeview=0x7f030003;
     }
     public static final class raw {
-        public static final int pai104=0x7f050000;
-        public static final int pai110=0x7f050001;
-        public static final int pai128=0x7f050002;
-        public static final int pai135=0x7f050003;
-        public static final int pai152=0x7f050004;
-        public static final int pai180=0x7f050005;
-        public static final int pai189=0x7f050006;
-        public static final int pai209=0x7f050007;
+        public static final int aout=0x7f050000;
+        public static final int br104=0x7f050001;
+        public static final int br107=0x7f050002;
+        public static final int br167=0x7f050003;
+        public static final int fanchon=0x7f050004;
+        public static final int pai104=0x7f050005;
+        public static final int pai128=0x7f050006;
+        public static final int pai135=0x7f050007;
+        public static final int pai152=0x7f050008;
+        public static final int pai180=0x7f050009;
+        public static final int pai189=0x7f05000a;
+        public static final int pai209=0x7f05000b;
     }
     public static final class string {
         public static final int about_mail=0x7f08000d;
