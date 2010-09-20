@@ -15,6 +15,8 @@ class Menu:
         self.isSaved = 1
         self.db = db
         self.separator = '----------------------------------------------'
+        self.render = Render(db)
+        self.parser = Parser(db)
 
     def read(self, prompt):
         return raw_input(prompt)
@@ -49,6 +51,12 @@ class Menu:
                     for c in self.db.Chanson:
                         if c.id == song_id:
                             c.printData()
+                            tags = self.render.getListTagString(song_id)
+                            if len(tags)>0:
+                                print tags
+                            fillieres= self.render.getListFilliereString(song_id)
+                            if len(fillieres)>0:
+                                print fillieres
                 else:
                     print 'Error !!!'
             elif(choice == 'h' or choice == 'help'):

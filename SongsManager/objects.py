@@ -27,8 +27,11 @@ class Chanson:
 
     def printData(self):
         print self.tostring()
-        print'URL :\t' + self.url
-        print'MIDI:\t' + self.midi
+        if self.url: 
+            print'URL :\t' + self.url
+        if self.midi:
+            print'MIDI:\t' + self.midi
+        print'------------------------------------------'
         print'PAROLES:\t'
         print'------------------------------------------'
         print self.paroles
