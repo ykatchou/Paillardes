@@ -3,6 +3,7 @@
 from objects import *
 from database import *
 from core import *
+from menu import *
 
 ####
 #### M A I N
@@ -13,11 +14,10 @@ class Main:
         db = DB()
 
         dbload = DatabaseLoader()
-        dbload.loadingChansons(db)
-        dbload.loadingFilliere(db)
-        dbload.loadingTag(db)
-        dbload.loadingChansonFilliere(db)
-        dbload.loadingChansonTag(db)
+        dbload.load(db)
+
+        m = Menu(db)
+        m.start()
 
         print'done.'
 

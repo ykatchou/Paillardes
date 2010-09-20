@@ -23,7 +23,7 @@ class Chanson:
         self.midi=midi
 
     def tostring(self):
-        return(self.id + '\t'+self.titre)
+        return(str(self.id) + '\t'+self.titre)
 
 
 class Filliere:
@@ -31,7 +31,7 @@ class Filliere:
         self.id=id
         self.nom=nom
     def tostring(self):
-        return(self.id + '\t'+self.nom)
+        return(str(self.id) + '\t'+self.nom)
 
 
 class Tag:
@@ -39,7 +39,7 @@ class Tag:
         self.id=id
         self.value=value
     def tostring(self):
-        return(self.id + '\t'+self.value)
+        return(str(self.id) + '\t'+self.value)
 
 
 class ChansonFilliere:
@@ -49,7 +49,7 @@ class ChansonFilliere:
         self.filliere_id=filliere_id
 
     def tostring(self):
-        return('Chanson ' + self.chanson_id + ' - ' + self.filliere_id)
+        return('Chanson ' + str(self.chanson_id) + ' - ' + str(self.filliere_id))
 
 class ChansonTag:
     def __init__(self,id=0,chanson_id=0,tag_id=0):
@@ -58,5 +58,5 @@ class ChansonTag:
         self.tag_id=tag_id
 
     def tostring(self):
-        return('Chanson ' + self.chanson_id + ' + ' + self.tag_id)
+        return('Chanson ' + str(self.chanson_id) + ' + ' + str(self.tag_id))
 
