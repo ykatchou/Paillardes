@@ -7,11 +7,11 @@
 #Gros conteneur !
 class DB:
     def __init__(self):
-        self.Chanson = set()
-        self.Filliere = set()
-        self.Tag = set()
-        self.ChansonFilliere = set()
-        self.ChansonTag = set()
+        self.Chanson = list()
+        self.Filliere = list()
+        self.Tag = list()
+        self.ChansonFilliere = list()
+        self.ChansonTag = list()
 
 
 class Chanson:
@@ -24,6 +24,14 @@ class Chanson:
 
     def tostring(self):
         return(str(self.id) + '\t'+self.titre)
+
+    def printData(self):
+        print self.tostring()
+        print'URL :\t' + self.url
+        print'MIDI:\t' + self.midi
+        print'PAROLES:\t'
+        print'------------------------------------------'
+        print self.paroles
 
 
 class Filliere:

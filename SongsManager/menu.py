@@ -43,6 +43,14 @@ class Menu:
                 self.list_filliere()
             elif(choice == 'lt'):
                 self.list_tag()
+            elif(choice[0:2] == 's '):
+                if(len(choice[2:]) >0):
+                    song_id = int(choice[2:])
+                    for c in self.db.Chanson:
+                        if c.id == song_id:
+                            c.printData()
+                else:
+                    print 'Error !!!'
             elif(choice == 'h' or choice == 'help'):
                 self.help()
             elif(choice =='q' or choice == 'exit' or choice == 'bye' or choice == 'quit'):
@@ -71,9 +79,13 @@ class Menu:
             print t.tostring()
 
     def list_command(self):
+        print ''
         print 'ls\t: list songs'
         print 'lf\t: list filliere'
         print 'lt\t: list tags'
+        print ''
+        print 's <n>\t: show song'
+        print ''
         print 'help\t: help'
         print 'bye\t: quit'
 
