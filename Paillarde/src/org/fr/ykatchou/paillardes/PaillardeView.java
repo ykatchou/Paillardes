@@ -126,6 +126,15 @@ public class PaillardeView extends Activity {
 	protected void onPause() {
 		super.onPause();
 		if (mp != null) {
+			mp.pause();
+			((Button) findViewById(R.id.btn_play_midi)).setText(R.string.btn_play);
+		}
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (mp!=null){
 			mp.release();
 		}
 	}
