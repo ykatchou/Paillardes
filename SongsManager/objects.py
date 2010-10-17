@@ -13,7 +13,6 @@ class DB:
         self.ChansonFilliere = list()
         self.ChansonTag = list()
 
-
 class Chanson:
     def __init__(self, id=0, titre="", paroles="",url="",midi=""):
         self.id=id
@@ -37,7 +36,6 @@ class Chanson:
             print'----------------------------------------------'
             print self.paroles
 
-
 class Filliere:
     def __init__(self, id=0, nom=""):
         self.id=id
@@ -59,7 +57,6 @@ class ChansonFilliere:
         self.id=id
         self.chanson_id=chanson_id
         self.filliere_id=filliere_id
-
     def tostring(self):
         return('Chanson ' + str(self.chanson_id) + ' - ' + str(self.filliere_id))
 
@@ -68,7 +65,6 @@ class ChansonTag:
         self.id=id
         self.chanson_id=chanson_id
         self.tag_id=tag_id
-
     def tostring(self):
         return('Chanson ' + str(self.chanson_id) + ' + ' + str(self.tag_id))
 
