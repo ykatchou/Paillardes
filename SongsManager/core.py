@@ -49,6 +49,13 @@ class Render:
             l.append(p.getTag(s).value)
         return l
 
+    def printListTagString(self, song_id):
+        p = Parser(self.db)
+        out_string = "";
+        for s in self.getListTag(song_id):
+            out_string = out_string + " " + p.getTag(s).value
+        return out_string
+
     def getListFilliere(self, song_id):
         l = list()
         for cf in self.db.ChansonFilliere:
@@ -62,6 +69,13 @@ class Render:
         for s in self.getListFilliere(song_id):
             l.append(p.getFilliere(s).nom)
         return l
+
+    def printListFilliereString(self, song_id):
+        p = Parser(self.db)
+        out_string = "";
+        for s in self.getListFilliere(song_id):
+            out_string = out_string + " " + p.getFilliere(s).nom
+        return out_string
 
 #Class Trigger : Mets a jour les tables N-N 
 

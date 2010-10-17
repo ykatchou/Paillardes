@@ -25,16 +25,17 @@ class Chanson:
     def tostring(self):
         return(str(self.id) + '\t'+self.titre)
 
-    def printData(self):
+    def printData(self, onlyInfos):
         print self.tostring()
         if self.url: 
             print'URL :\t' + self.url
         if self.midi:
             print'MIDI:\t' + self.midi
-        print'------------------------------------------'
-        print'PAROLES:\t'
-        print'------------------------------------------'
-        print self.paroles
+        if not onlyInfos:
+            print'----------------------------------------------'
+            print'PAROLES:\t'
+            print'----------------------------------------------'
+            print self.paroles
 
 
 class Filliere:

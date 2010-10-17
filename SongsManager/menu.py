@@ -46,19 +46,15 @@ class Menu:
             elif(choice == 'lt'):
                 self.list_tag()
             elif(choice[0:2] == 's '):
-                if(len(choice[2:]) >0):
+                if(len(choice[2:])>0):
                     song_id = int(choice[2:])
-                    for c in self.db.Chanson:
-                        if c.id == song_id:
-                            c.printData()
-                            tags = self.render.getListTagString(song_id)
-                            if len(tags)>0:
-                                print tags
-                            fillieres= self.render.getListFilliereString(song_id)
-                            if len(fillieres)>0:
-                                print fillieres
+                    self.show_song(song_id,False)
                 else:
-                    print 'Error !!!'
+                    print 'Error usage : s <number>'
+            elif(choice[0:2] == 'si'):
+                if(len(choice[2:])>0):
+                    song_id = int(choice[2:])
+                    self.show_song(song_id,True)
             elif(choice == 'h' or choice == 'help'):
                 self.help()
             elif(choice =='q' or choice == 'exit' or choice == 'bye' or choice == 'quit'):
@@ -86,6 +82,14 @@ class Menu:
         for t in self.db.Tag:
             print t.tostring()
 
+    def show_song(self, song_id, onlyInfos):
+        for c in self.db.Chanson:
+            if c.id == song_id:
+                c.printData(onlyInfos)
+                print self.separator
+                print "TAGS      : " + self.render.printListTagString(song_id)
+                print "FILLIERES : " + self.render.printListFilliereString(song_id)
+
     def list_command(self):
         print ''
         print 'ls\t: list songs'
@@ -93,6 +97,7 @@ class Menu:
         print 'lt\t: list tags'
         print ''
         print 's <n>\t: show song'
+        print 'si <n>\t: show song infos'
         print ''
         print 'help\t: help'
         print 'bye\t: quit'
