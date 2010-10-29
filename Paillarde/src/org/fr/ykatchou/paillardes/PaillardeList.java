@@ -60,10 +60,14 @@ public class PaillardeList extends ListActivity {
 		Bundle b = new Bundle();
 		Intent i = new Intent(v.getContext(), PaillardeView.class);
 
-		Chanson ch = Chanson.dbhelp.getTitres(filtre).get(position);
-		b.putString(Chanson.Id, ch.get(Chanson.Id));
+		if(position < Chanson.dbhelp.getTitres(filtre).size()){
+			Chanson ch = Chanson.dbhelp.getTitres(filtre).get(position);
+			b.putString(Chanson.Id, ch.get(Chanson.Id));
 
-		i.putExtra("data", b);
-		startActivity(i);
+			i.putExtra("data", b);
+			startActivity(i);
+		}else{
+			filtre = "";
+		}
 	}
 }
