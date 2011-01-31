@@ -28,7 +28,6 @@ public class About extends Activity {
 		Button btn_send_mail = (Button) findViewById(R.id.btn_mail);
 
 		btn_send_mail.setOnClickListener(new OnClickListener() {
-			@Override
 			public void onClick(View v) {
 				String mailAdress = "mailto:ykatchou@gmail.com?subject=Application%20Android%20-%20Paillardes";
 				Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse(mailAdress));
