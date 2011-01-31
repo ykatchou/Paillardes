@@ -66,7 +66,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			// the default system path
 			// of your application so we are gonna be able to overwrite that
 			// database with our database.
-			//this.getReadableDatabase();
+			this.getWritableDatabase();
+			this.close();
 			try {
 				copyDataBase();
 			} catch (IOException e) {
@@ -76,8 +77,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	private boolean checkDatabase() {
-		File dbFile = new File(DB_PATH+DB_NAME);
-        return dbFile.exists();
+		String[] files;
+		try {
+			files = myContext.getAssets().list(DB_NAME);
+	        return (files.length > 0);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	private void copyDataBase() throws IOException {
