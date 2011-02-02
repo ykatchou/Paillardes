@@ -70,20 +70,23 @@ public final class R {
         public static final int charlotte=0x7f050006;
         public static final int cyprien=0x7f050007;
         public static final int fanchon=0x7f050008;
-        public static final int lebonroi=0x7f050009;
-        public static final int pai104=0x7f05000a;
-        public static final int pai105=0x7f05000b;
-        public static final int pai128=0x7f05000c;
-        public static final int pai135=0x7f05000d;
-        public static final int pai152=0x7f05000e;
-        public static final int pai166=0x7f05000f;
-        public static final int pai170=0x7f050010;
-        public static final int pai180=0x7f050011;
-        public static final int pai181=0x7f050012;
-        public static final int pai189=0x7f050013;
-        public static final int pai209=0x7f050014;
-        public static final int pai213=0x7f050015;
-        public static final int pai330=0x7f050016;
+        public static final int jeanneton=0x7f050009;
+        public static final int lebonroi=0x7f05000a;
+        public static final int pai104=0x7f05000b;
+        public static final int pai105=0x7f05000c;
+        public static final int pai128=0x7f05000d;
+        public static final int pai135=0x7f05000e;
+        public static final int pai152=0x7f05000f;
+        public static final int pai166=0x7f050010;
+        public static final int pai170=0x7f050011;
+        public static final int pai180=0x7f050012;
+        public static final int pai181=0x7f050013;
+        public static final int pai189=0x7f050014;
+        public static final int pai190=0x7f050015;
+        public static final int pai209=0x7f050016;
+        public static final int pai213=0x7f050017;
+        public static final int pai330=0x7f050018;
+        public static final int ricard=0x7f050019;
     }
     public static final class string {
         public static final int about_mail=0x7f08000d;
