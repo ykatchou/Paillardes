@@ -27,7 +27,6 @@ public class PaillardeMenu extends Activity {
 
 		Button b = (Button) findViewById(R.id.btn_list);
 		b.setOnClickListener(new OnClickListener() {
-			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(v.getContext(), PaillardeList.class);
 				startActivity(i);
@@ -36,7 +35,6 @@ public class PaillardeMenu extends Activity {
 
 		b = (Button) findViewById(R.id.btn_search);
 		b.setOnClickListener(new OnClickListener() {
-			@Override
 			public void onClick(View v) {
 				onSearchRequested();
 			}
@@ -44,7 +42,6 @@ public class PaillardeMenu extends Activity {
 
 		b = (Button) findViewById(R.id.btn_about);
 		b.setOnClickListener(new OnClickListener() {
-			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(v.getContext(), About.class);
 				startActivity(i);
@@ -53,7 +50,6 @@ public class PaillardeMenu extends Activity {
 
 		b = (Button) findViewById(R.id.btn_quit);
 		b.setOnClickListener(new OnClickListener() {
-			@Override
 			public void onClick(View v) {
 				finish();
 			}

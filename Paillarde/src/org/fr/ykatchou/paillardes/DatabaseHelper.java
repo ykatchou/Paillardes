@@ -1,5 +1,6 @@
 package org.fr.ykatchou.paillardes;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -65,11 +66,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			// the default system path
 			// of your application so we are gonna be able to overwrite that
 			// database with our database.
-			this.getReadableDatabase();
+			this.getWritableDatabase();
+			this.close();
 			try {
-
 				copyDataBase();
-
 			} catch (IOException e) {
 				throw new Error("Error copying database");
 			}
@@ -77,17 +77,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	private boolean checkDatabase() {
-		SQLiteDatabase checkDB = null;
+		String[] files;
 		try {
-			String myPath = DB_PATH + DB_NAME;
-			checkDB = SQLiteDatabase.openDatabase(myPath, null,
-					SQLiteDatabase.OPEN_READONLY);
-		} catch (SQLiteException e) {
+			files = myContext.getAssets().list(DB_NAME);
+	        return (files.length > 0);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		if (checkDB != null) {
-			checkDB.close();
-		}
-		return checkDB != null ? true : false;
+		return false;
 	}
 
 	private void copyDataBase() throws IOException {
@@ -109,17 +107,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		myInput.close();
 	}
 
-	private void openDataBase() throws SQLException {
+	public void openDataBase() throws SQLException {
 		// Open the database
-		String myPath = DB_PATH + DB_NAME;
-		myDatabase = SQLiteDatabase.openDatabase(myPath, null,
-				SQLiteDatabase.OPEN_READONLY);
+		myDatabase = this.getReadableDatabase();
 	}
 
 	public void init() throws IOException {
-		if (!checkDatabase())
+		if (!checkDatabase()){
 			createDataBase();
-		copyDataBase();
+			copyDataBase();
+		}
 		openDataBase();
 	}
 

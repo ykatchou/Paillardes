@@ -71,7 +71,6 @@ public class PaillardeView extends Activity {
 	public void bind_button_play_midi() {
 		Button btn = (Button) findViewById(R.id.btn_play_midi);
 		btn.setOnClickListener(new OnClickListener() {
-			@Override
 			public void onClick(View v) {
 				if (mp != null) {
 					if (mp.isPlaying()) {
@@ -91,7 +90,6 @@ public class PaillardeView extends Activity {
 	public void bind_button_retour() {
 		Button btn = (Button) findViewById(R.id.btn_retour);
 		btn.setOnClickListener(new OnClickListener() {
-			@Override
 			public void onClick(View v) {
 				finish();
 			}
@@ -103,7 +101,6 @@ public class PaillardeView extends Activity {
 		Button btn = (Button) findViewById(R.id.btn_site_web);
 		if (url != null && url != "") {
 			btn.setOnClickListener(new OnClickListener() {
-				@Override
 				public void onClick(View v) {
 					String url = tmp_chanson.get(Chanson.url);
 					Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
