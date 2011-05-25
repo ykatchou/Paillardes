@@ -1,17 +1,10 @@
 package org.fr.ykatchou.paillardes;
 
-import java.io.FileDescriptor;
-import java.io.IOException;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.opengl.Visibility;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
