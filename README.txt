@@ -18,7 +18,7 @@ Le dépot comportent plusieurs projets :
 Les choses à venir sont :
  - Ajouter la possibilité de m'offrir une bière :)
  - Nouveau menus pour les écrans moyen et grand
- - Ajout des nouvels chansons
+ - Ajout des nouvelles chansons
  - Site web avec la liste des chansons actuels + formulaire pour ajouter des chansons
  - Nouveau design
  - Nouvels icones
