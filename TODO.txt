@@ -11,3 +11,6 @@ TODOLIST :)
 - Fonctionnalité "Par filière"
 - Fonctionnalité "Noter"
 - Ignorer les pronoms dans le titre des chansons pour le tri (Le,La,Les,Au,Du,..)
+- Configurer github pour expliquer mieux le projet
+- Mettre en place les indications pour pouvoir être aider
+- Chercher d'autres mainteneurs.
