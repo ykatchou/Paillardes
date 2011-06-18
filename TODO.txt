@@ -1,0 +1,12 @@
+TODOLIST :)
+
+- Ajouter la possibilité de m'offrir une bière :)
+- Nouveau menus pour les écrans moyen et grand
+- Ajout des nouvels chansons
+- Site web avec la liste des chansons actuels + formulaire pour ajouter des chansons
+- Nouveau design
+- Nouvels icones
+- Fonctionnalité "Random"
+- Fonctionnalité "Par genre"
+- Fonctionnalité "Par filière"
+- Fonctionnalité "Noter"
