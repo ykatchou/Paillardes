@@ -10,3 +10,4 @@ TODOLIST :)
 - Fonctionnalité "Par genre"
 - Fonctionnalité "Par filière"
 - Fonctionnalité "Noter"
+- Ignorer les pronoms dans le titre des chansons pour le tri (Le,La,Les,Au,Du,..)
