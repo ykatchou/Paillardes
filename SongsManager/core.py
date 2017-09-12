@@ -3,11 +3,12 @@
 from objects import *
 from database import *
 
+
 ####
 #### D A T A   F U N C T I O N S
 ######################################################
 
-#Class Parser : Parcours rapide
+# Class Parser : Parcours rapide
 class Parser:
     def __init__(self, db):
         self.db = db
@@ -30,7 +31,8 @@ class Parser:
                 return t
         return int(tag_id)
 
-#Class Render : Mise en forme / jointure -> affichage
+
+# Class Render : Mise en forme / jointure -> affichage
 class Render:
     def __init__(self, db):
         self.db = db
@@ -77,6 +79,6 @@ class Render:
             out_string = out_string + " " + p.getFilliere(s).nom
         return out_string
 
-#Class Trigger : Mets a jour les tables N-N 
+# Class Trigger : Mets a jour les tables N-N
 
-#Class Helper : Fonctions haut niveaux
+# Class Helper : Fonctions haut niveaux

@@ -5,6 +5,7 @@ from database import *
 from core import *
 from menu import *
 
+
 ####
 #### M A I N
 ######################################################
@@ -19,13 +20,11 @@ class Main:
         m = Menu(db)
         m.start()
 
-        print'done.'
+        print('done.')
+
 
 ####
 #### I N I T I A L   L A U N C H E R
 ######################################################
 m = Main()
 m.main()
-
-
-
