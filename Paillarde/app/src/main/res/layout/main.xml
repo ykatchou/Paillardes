@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="fill_parent"
+    android:background="@color/black">
+<LinearLayout android:orientation="vertical"
+    android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+    <ImageView android:layout_height="wrap_content" android:layout_width="fill_parent"
+    	android:src="@drawable/faluche" android:scaleType="fitCenter" android:adjustViewBounds="true" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="100sp"/>
+
+    <Button
+        android:id="@+id/btn_list"
+        android:layout_width="match_parent"
+        android:layout_height="109dp"
+        android:layout_marginLeft="@dimen/btn_margin_left"
+        android:layout_marginTop="@dimen/btn_margin_top"
+        android:layout_marginRight="@dimen/btn_margin_right"
+        android:drawableLeft="@android:drawable/ic_media_play"
+        android:text="@string/btn_list"
+        android:textSize="@dimen/menu_text" />
+    
+    <Button android:layout_height="wrap_content" android:layout_width="fill_parent"
+    android:layout_marginTop="@dimen/btn_margin_top"
+    android:layout_marginLeft="@dimen/btn_margin_left" android:layout_marginRight="@dimen/btn_margin_right"
+        android:drawableLeft="@android:drawable/ic_search_category_default"
+    android:text="@string/btn_search" android:id="@+id/btn_search" android:textSize="@dimen/menu_text"/>
+
+    <Button
+        android:id="@+id/btn_about"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/btn_margin_left"
+        android:layout_marginTop="@dimen/btn_margin_top"
+        android:layout_marginRight="@dimen/btn_margin_right"
+        android:drawableLeft="@android:drawable/ic_menu_help"
+        android:text="@string/btn_about"
+        android:textSize="@dimen/menu_text" />
+
+</LinearLayout>
+</ScrollView>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<dimen name="menu_text">25sp</dimen>
+
+<dimen name="btn_margin_top">10sp</dimen>
+<dimen name="btn_margin_right">15sp</dimen>
+<dimen name="btn_margin_left">15sp</dimen>
+
+<dimen name="list_item_spacer">10sp</dimen>
+<dimen name="list_item_height">35sp</dimen>
+<dimen name="list_titre_size">20sp</dimen>
+<dimen name="list_tags_size">14sp</dimen>
+<dimen name="list_midi_width">50sp</dimen>
+
+<dimen name="ch_titre">26sp</dimen>
+<dimen name="ch_paroles">20sp</dimen>
+<dimen name="texte_margin">5sp</dimen>
+
+<dimen name="about_titre">24sp</dimen>
+<dimen name="about_texte">20sp</dimen>
+
+<dimen name="btn_retour">20sp</dimen>
+<dimen name="btn_paroles">20sp</dimen>
+</resources>
