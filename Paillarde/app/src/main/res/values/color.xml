@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<color name="white">#FFFFFF</color>
-<color name="black">#000000</color>
-<color name="tags">#AAAAAA</color>
-<color name="midi_info">#FF5F5F</color>
+    <!-- Base -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Backgrounds -->
+    <color name="color_bg">#0D0D0D</color>
+    <color name="color_surface">#1A1A1A</color>
+    <color name="color_surface_raised">#242424</color>
+    <color name="color_divider">#2E2A24</color>
+
+    <!-- Brand: warm amber/gold -->
+    <color name="color_gold">#D4A017</color>
+    <color name="color_gold_dark">#A67C00</color>
+    <color name="color_gold_text">#FFD45E</color>
+    <color name="color_on_gold">#0D0D0D</color>
+
+    <!-- Text -->
+    <color name="color_text_primary">#F0E6C8</color>
+    <color name="color_text_secondary">#998877</color>
+
+    <!-- Donation CTA -->
+    <color name="color_donation">#B5451B</color>
+
+    <!-- Accents -->
+    <color name="midi_info">#FF6B6B</color>
+    <color name="tags">#998877</color>
 </resources>

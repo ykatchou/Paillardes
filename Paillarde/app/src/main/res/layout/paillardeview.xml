@@ -1,60 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@color/color_bg">
 
-    <LinearLayout
+    <!-- Toolbar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@color/color_surface"
+        app:elevation="4dp">
 
-        <TextView
-            android:id="@+id/ch_titre"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_view"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            style="@style/Widget.App.Toolbar" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Scrollable lyrics -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_bg"
+        android:paddingBottom="@dimen/font_size_bar_height"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/title"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/texte_margin"
+            android:paddingEnd="@dimen/texte_margin"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
+
+            <!-- Song title -->
+            <TextView
+                android:id="@+id/ch_titre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="16dp"
+                android:textColor="@color/color_gold_text"
+                android:textSize="@dimen/ch_titre"
+                android:textStyle="bold" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/color_divider" />
+
+            <!-- Lyrics -->
+            <TextView
+                android:id="@+id/ch_paroles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingMultiplier="1.5"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/ch_paroles" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Sticky bottom bar: font size controls + midi + browser -->
+    <LinearLayout
+        android:id="@+id/font_size_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/font_size_bar_height"
+        android:layout_gravity="bottom"
+        android:background="@color/color_surface"
+        android:elevation="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aa"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="13sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_font_decrease"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="12dp"
+            android:text="−"
+            android:textSize="20sp"
+            style="@style/Widget.App.Button.Circle" />
+
+        <TextView
+            android:id="@+id/tv_font_size"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/ch_titre" />
+            android:textColor="@color/color_gold_text"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_font_increase"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:text="+"
+            android:textSize="20sp"
+            style="@style/Widget.App.Button.Circle" />
+
+        <!-- Spacer -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <!-- Play MIDI button (gold filled, hidden when no MIDI) -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_play_midi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/texte_margin"
-            android:layout_marginRight="@dimen/texte_margin"
-            android:text="@string/btn_play" />
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginEnd="8dp"
+            android:text=""
+            android:visibility="gone"
+            app:icon="@drawable/ic_musical_note"
+            app:iconGravity="textStart"
+            app:iconTint="@color/color_on_gold" />
 
-        <TextView
-            android:id="@+id/ch_paroles"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/texte_margin"
-            android:layout_marginRight="@dimen/texte_margin"
-            android:layout_marginBottom="@dimen/ch_paroles"
-            android:gravity="center_horizontal"
-            android:textColor="@color/white"
-            android:textSize="@dimen/ch_paroles" />
-
-        <Button
+        <!-- Browser button -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_site_web"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/btn_margin_left"
-            android:layout_marginRight="@dimen/btn_margin_right"
-            android:text="@string/btn_site_web"
-            android:textColor="@color/black"
-            android:textSize="@dimen/btn_paroles" />
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:text="🌐"
+            android:textSize="18sp"
+            style="@style/Widget.App.Button.Circle" />
 
-        <Button
-            android:id="@+id/btn_retour"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/btn_margin_left"
-            android:layout_marginRight="@dimen/btn_margin_right"
-            android:text="@string/btn_retour"
-            android:textColor="@color/black"
-            android:textSize="@dimen/btn_paroles" />
     </LinearLayout>
-</ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

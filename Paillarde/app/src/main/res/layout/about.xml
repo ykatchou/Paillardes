@@ -1,40 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@color/color_bg">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@color/color_surface"
+        app:elevation="4dp">
 
-        <TextView
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_about"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            style="@style/Widget.App.Toolbar"
+            app:title="@string/about_titre" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_bg"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/title"
-            android:gravity="center"
-            android:text="@string/about_titre"
-            android:textColor="@color/white"
-            android:textSize="@dimen/about_titre" />
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="32dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/texte_margin"
-            android:layout_marginRight="@dimen/texte_margin"
-            android:text="@string/about_texte"
-            android:textColor="@color/white"
-            android:textSize="@dimen/about_texte" />
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/color_divider" />
 
-        <Button
-            android:id="@+id/btn_buybeer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/btn_margin_left"
-            android:layout_marginRight="@dimen/btn_margin_right"
-            android:drawableTop="@drawable/beer"
-            android:text="@string/about_buy_beer" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:lineSpacingMultiplier="1.6"
+                android:text="@string/about_texte"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/about_texte" />
 
-    </LinearLayout>
-</ScrollView>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_buybeer"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="12dp"
+                android:text="@string/about_buy_beer"
+                android:textSize="@dimen/menu_text"
+                style="@style/Widget.App.Button.Donation" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_send_mail"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/btn_contact"
+                android:textSize="@dimen/menu_text"
+                style="@style/Widget.App.Button.Outlined" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

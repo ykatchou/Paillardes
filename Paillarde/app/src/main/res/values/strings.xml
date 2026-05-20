@@ -23,4 +23,9 @@
     <string name="search_hint">Recherche une chanson.</string>
     
     <string name="menu_url">Voir dans le navigateur web</string>
+
+    <string name="font_size_decrease">−</string>
+    <string name="font_size_increase">+</string>
+    <string name="list_songs_title">Chansons</string>
+    <string name="btn_contact">Envoyer un message</string>
 </resources>

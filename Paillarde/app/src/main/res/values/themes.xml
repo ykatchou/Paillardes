@@ -1,9 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/white</item>
-        <item name="android:windowBackground">@color/black</item>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/color_gold</item>
+        <item name="colorPrimaryDark">@color/color_gold_dark</item>
+        <item name="colorAccent">@color/color_gold</item>
+        <item name="colorSurface">@color/color_surface</item>
+        <item name="colorOnSurface">@color/color_text_primary</item>
+        <item name="android:colorBackground">@color/color_bg</item>
+        <item name="android:windowBackground">@color/color_bg</item>
+        <item name="android:textColorPrimary">@color/color_text_primary</item>
+        <item name="android:textColorSecondary">@color/color_text_secondary</item>
+        <item name="materialButtonStyle">@style/Widget.App.Button</item>
+        <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
     </style>
+
+    <!-- Primary filled button -->
+    <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/color_gold</item>
+        <item name="android:textColor">@color/color_on_gold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <!-- Outlined secondary button -->
+    <style name="Widget.App.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/color_gold</item>
+        <item name="android:textColor">@color/color_gold_text</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <!-- Donation CTA button -->
+    <style name="Widget.App.Button.Donation" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/color_donation</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <!-- Small circular outlined button (font size controls) -->
+    <style name="Widget.App.Button.Circle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/color_gold</item>
+        <item name="android:textColor">@color/color_gold_text</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">22dp</item>
+        <item name="android:minWidth">44dp</item>
+        <item name="android:minHeight">44dp</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">0dp</item>
+    </style>
+
+    <style name="Widget.App.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@color/color_surface</item>
+        <item name="titleTextColor">@color/color_gold_text</item>
+        <item name="navigationIconTint">@color/color_gold_text</item>
+    </style>
+
 </resources>
