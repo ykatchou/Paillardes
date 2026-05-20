@@ -1,56 +1,70 @@
 package org.fr.ykatchou.paillardes;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Paillarde
  * Application sous GPL v3
  * @author ykatchou
- * Cettte classe affiche le menu principal.
+ * Cette classe affiche le menu principal.
  */
-public class PaillardeMenu extends Activity {
-	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+public class PaillardeMenu extends AppCompatActivity implements BillingManager.Listener {
 
-		//Remove title bar
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+    private static final String FALLBACK_URL = "https://ko-fi.com/ykatchou";
 
-		setContentView(R.layout.main);
+    private BillingManager billingManager;
 
-		Chanson.dbhelp = new DatabaseHelper(this);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
 
-		// / BINDINGS
-		// //////////////////////////////////////////////////
+        Chanson.dbhelp = new DatabaseHelper(this);
 
-		Button b = (Button) findViewById(R.id.btn_list);
-		b.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent i = new Intent(v.getContext(), PaillardeList.class);
-				startActivity(i);
-			}
-		});
+        billingManager = new BillingManager(this);
+        billingManager.setListener(this);
+        billingManager.initialize();
 
-		b = (Button) findViewById(R.id.btn_search);
-		b.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				onSearchRequested();
-			}
-		});
+        Button btnList = findViewById(R.id.btn_list);
+        btnList.setOnClickListener(v -> startActivity(new Intent(this, PaillardeList.class)));
 
-		b = (Button) findViewById(R.id.btn_about);
-		b.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent i = new Intent(v.getContext(), About.class);
-				startActivity(i);
-			}
-		});
-	}
+        Button btnSearch = findViewById(R.id.btn_search);
+        btnSearch.setOnClickListener(v -> onSearchRequested());
+
+        Button btnAbout = findViewById(R.id.btn_about);
+        btnAbout.setOnClickListener(v -> startActivity(new Intent(this, About.class)));
+
+        Button btnBuyBeer = findViewById(R.id.btn_buybeer);
+        btnBuyBeer.setOnClickListener(v -> {
+            if (billingManager.getState() == BillingManager.State.READY) {
+                billingManager.launchPurchase(this);
+            } else {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(FALLBACK_URL)));
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        billingManager.destroy();
+    }
+
+    @Override
+    public void onPurchaseSuccess() {
+        runOnUiThread(() ->
+                Toast.makeText(this, "Merci pour votre soutien! 🍺", Toast.LENGTH_LONG).show());
+    }
+
+    @Override
+    public void onPurchaseError() {
+        runOnUiThread(() ->
+                Toast.makeText(this, "Erreur de paiement. Essayez ko-fi.com!", Toast.LENGTH_LONG).show());
+    }
 }

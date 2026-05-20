@@ -14,220 +14,185 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Paillarde
  * Application sous GPL v3
  * @author ykatchou
- * Cettte classe aide à l'accès à la base de données.
+ * Cette classe aide à l'accès à la base de données.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
-	// The Android's default system path of your application database.
-	private static String DB_PATH = "/data/data/org.fr.ykatchou.paillardes/databases/";
-	private static String DB_NAME = "paillardes.db";
-	private SQLiteDatabase myDatabase;
-	private final Context myContext;
+    private static final String DB_NAME = "paillardes.db";
+    private SQLiteDatabase myDatabase;
+    private final Context myContext;
 
-	public DatabaseHelper(Context context) {
-		super(context, DB_NAME, null, 1);
-		this.myContext = context;
+    public DatabaseHelper(Context context) {
+        super(context, DB_NAME, null, 1);
+        this.myContext = context;
 
-		try {
-			this.init();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+        try {
+            this.init();
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to initialize database", e);
+        }
+    }
 
-	@Override
-	public synchronized void close() {
-		if (myDatabase != null)
-			myDatabase.close();
-		super.close();
-	}
+    @Override
+    public synchronized void close() {
+        if (myDatabase != null)
+            myDatabase.close();
+        super.close();
+    }
 
-	@Override
-	public void onCreate(SQLiteDatabase db) {
-	}
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+    }
 
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-	}
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    }
 
-	private void createDataBase() throws IOException {
-		boolean dbExist = checkDatabase();
-		if (dbExist) {
-			// do nothing - database already exist
-		} else {
+    private boolean checkDatabase() {
+        return myContext.getDatabasePath(DB_NAME).exists();
+    }
 
-			// By calling this method and empty database will be created into
-			// the default system path
-			// of your application so we are gonna be able to overwrite that
-			// database with our database.
-			this.getWritableDatabase();
-			this.close();
-			try {
-				copyDataBase();
-			} catch (IOException e) {
-				throw new Error("Error copying database");
-			}
-		}
-	}
+    private void copyDataBase() throws IOException {
+        InputStream myInput = myContext.getAssets().open(DB_NAME);
+        File dbFile = myContext.getDatabasePath(DB_NAME);
+        dbFile.getParentFile().mkdirs();
+        OutputStream myOutput = new FileOutputStream(dbFile);
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = myInput.read(buffer)) > 0) {
+            myOutput.write(buffer, 0, length);
+        }
+        myOutput.flush();
+        myOutput.close();
+        myInput.close();
+    }
 
-	private boolean checkDatabase() {
-		String[] files;
-		try {
-			files = myContext.getAssets().list(DB_NAME);
-	        return (files.length > 0);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return false;
-	}
+    public void openDataBase() throws SQLException {
+        myDatabase = SQLiteDatabase.openDatabase(
+                myContext.getDatabasePath(DB_NAME).getAbsolutePath(),
+                null,
+                SQLiteDatabase.OPEN_READWRITE);
+    }
 
-	private void copyDataBase() throws IOException {
-		// Open your local db as the input stream
-		InputStream myInput = myContext.getAssets().open(DB_NAME);
-		// Path to the just created empty db
-		String outFileName = DB_PATH + DB_NAME;
-		// Open the empty db as the output stream
-		OutputStream myOutput = new FileOutputStream(outFileName);
-		// transfer bytes from the inputfile to the outputfile
-		byte[] buffer = new byte[1024];
-		int length;
-		while ((length = myInput.read(buffer)) > 0) {
-			myOutput.write(buffer, 0, length);
-		}
-		// Close the streams
-		myOutput.flush();
-		myOutput.close();
-		myInput.close();
-	}
+    public void init() throws IOException {
+        if (!checkDatabase()) {
+            copyDataBase();
+        }
+        openDataBase();
+    }
 
-	public void openDataBase() throws SQLException {
-		// Open the database
-		myDatabase = this.getReadableDatabase();
-	}
+    public List<Chanson> getTitres() {
+        List<Chanson> data = new LinkedList<>();
+        Set<Long> ids = new TreeSet<>();
 
-	public void init() throws IOException {
-		if (!checkDatabase()){
-			createDataBase();
-			copyDataBase();
-		}
-		openDataBase();
-	}
+        String query = "select ch.id, ch.titre, t.value as tags, ch.midi"
+                + " from chanson ch join chansontag cht on ch.id = cht.chanson_id"
+                + " join tag t on t.id = cht.tag_id order by ch.titre, tags";
 
-	public List<Chanson> getTitres() {
-		List<Chanson> data = new LinkedList<Chanson>();
-		Set<Long> ids = new TreeSet<Long>();
-		Long tmp_id;
+        Cursor d = myDatabase.rawQuery(query, null);
+        try {
+            while (d.moveToNext()) {
+                long tmp_id = d.getLong(0);
+                if (!ids.contains(tmp_id)) {
+                    Chanson c = new Chanson(tmp_id, d.getString(1));
+                    ChansonHelper.GenerateMidi(c, d.getString(3));
+                    c.addTags(d.getString(2));
+                    ids.add(tmp_id);
+                    data.add(c);
+                } else {
+                    for (Chanson c : data) {
+                        if (c.private_id.equals(tmp_id)) {
+                            c.addTags(d.getString(2));
+                            break;
+                        }
+                    }
+                }
+            }
+        } finally {
+            d.close();
+        }
+        return data;
+    }
 
-		String allTitresQuery = "select ch.id, ch.titre,t.value as tags, ch.midi";
-		allTitresQuery += " from chanson ch join chansontag cht on ch.id = cht.chanson_id";
-		allTitresQuery += " join tag t on t.id = cht.tag_id order by ch.titre, tags";
-		
-		Cursor d = myDatabase.rawQuery(allTitresQuery, null);
-		while (d.moveToNext()) {
-			tmp_id = d.getLong(0);
-			//Si l'on a déjà ajouté un des tags...
-			if(!ids.contains(tmp_id)){
-				Chanson c = new Chanson(tmp_id, d.getString(1));
-				ChansonHelper.GenerateMidi(c, d.getString(3));
-				
-				c.addTags(d.getString(2));
-				ids.add(tmp_id);
-				data.add(c);
-			}else{
-				//Recherche de la chanson dans la liste
-				for(Chanson c : data){
-					if(c.private_id.equals(tmp_id)){
-						c.addTags(d.getString(2));
-						break;
-					}
-				}
-			}
-		}
-		return data;
-	}
+    public List<Chanson> getTitres(String filter) {
+        if (filter == null || filter.isEmpty())
+            return getTitres();
 
-	public List<Chanson> getTitres(String filter) {
-		if (filter == null || filter == "")
-			return getTitres();
+        List<Chanson> data = new LinkedList<>();
 
-		List<Chanson> data = new LinkedList<Chanson>();
+        String query = "select ch.id, ch.titre, t.value as tags, ch.midi"
+                + " from chanson ch join chansontag cht on ch.id = cht.chanson_id"
+                + " join tag t on t.id = cht.tag_id"
+                + " where ch.titre like ? or ch.paroles like ?"
+                + " order by ch.titre, tags";
+        String[] params = {"%" + filter + "%", "%" + filter + "%"};
 
-		String allTitresQuery = "select ch.id, ch.titre,t.value as tags, ch.midi";
-		allTitresQuery += " from chanson ch join chansontag cht on ch.id = cht.chanson_id";
-		allTitresQuery += " join tag t on t.id = cht.tag_id";
-		allTitresQuery += " where ch.titre like ? or ch.paroles like ? ";
-		allTitresQuery += " order by ch.titre, tags";
-		String[] params = new String[2];
+        Cursor d = myDatabase.rawQuery(query, params);
+        Set<Long> ids = new TreeSet<>();
 
-		params[0] = "%" + filter + "%";
-		params[1] = "%" + filter + "%";
+        try {
+            while (d.moveToNext()) {
+                long tmp_id = d.getLong(0);
+                if (!ids.contains(tmp_id)) {
+                    Chanson c = new Chanson(tmp_id, d.getString(1));
+                    ChansonHelper.GenerateMidi(c, d.getString(3));
+                    c.addTags(d.getString(2));
+                    ids.add(tmp_id);
+                    data.add(c);
+                } else {
+                    for (Chanson c : data) {
+                        if (c.private_id.equals(tmp_id)) {
+                            c.addTags(d.getString(2));
+                            break;
+                        }
+                    }
+                }
+            }
+        } finally {
+            d.close();
+        }
+        return data;
+    }
 
-		Cursor d = myDatabase.rawQuery(allTitresQuery, params);
+    public Chanson getChanson(Long id) {
+        Chanson data = new Chanson();
 
-		Set<Long> ids = new TreeSet<Long>();
-		Long tmp_id;
-		
-		while (d.moveToNext()) {
-			tmp_id = d.getLong(0);
-			if(!ids.contains(tmp_id)){
-				Chanson c = new Chanson(tmp_id, d.getString(1));
-				ChansonHelper.GenerateMidi(c, d.getString(3));
-				
-				c.addTags(d.getString(2));
-				ids.add(tmp_id);
-				data.add(c);
-			}else
-			{
-				//Recherche de la chanson dans la liste
-				for(Chanson c : data){
-					if(c.private_id.equals(tmp_id)){
-						c.addTags(d.getString(2));
-						break;
-					}
-				}	
-			}
-		}
-		return data;
-	}
+        String query = "select ch.id, ch.titre, ch.paroles, ch.url, t.value, ch.midi"
+                + " from chanson ch join chansontag cht on cht.chanson_id = ch.id"
+                + " join tag t on t.id = cht.tag_id where ch.id = ?";
+        String[] params = {String.valueOf(id)};
 
-	public Chanson getChanson(Long id) {
-		Chanson data = new Chanson();
-		String[] params = new String[1];
-		
-		String getChansonQuery = "select ch.id, ch.titre, ch.paroles, ch.url, t.value, ch.midi";
-		getChansonQuery +=" from chanson ch join chansontag cht on cht.chanson_id = ch.id";
-		getChansonQuery +=" join tag t on t.id = cht.tag_id where ch.id = ? ";
-		
-		params[0] = String.valueOf(id);
-		Cursor d = myDatabase.rawQuery(getChansonQuery, params);
+        Cursor d = myDatabase.rawQuery(query, params);
+        try {
+            while (d.moveToNext()) {
+                if (!data.containsKey(Chanson.Id)) {
+                    data.setId(d.getLong(0));
+                    data.put(Chanson.Titre, d.getString(1));
+                    data.put(Chanson.Paroles, d.getString(2));
+                    data.put(Chanson.url, d.getString(3));
+                    ChansonHelper.GenerateMidi(data, d.getString(5));
+                }
+                data.addTags(d.getString(4));
+            }
+        } finally {
+            d.close();
+        }
+        return data;
+    }
 
-		while (d.moveToNext()) {
-			if(!data.containsKey(Chanson.Id)){
-				data.setId(d.getLong(0));
-				data.put(Chanson.Titre, d.getString(1));
-				data.put(Chanson.Paroles, d.getString(2));
-				data.put(Chanson.url, d.getString(3));
-				ChansonHelper.GenerateMidi(data, d.getString(5));
-			}
-			data.addTags(d.getString(4));
-		}
-		return data;
-	}
-
-	public Long getChansonCount() {
-		String getCountQuery = "select count(*) from chanson";
-		Cursor d = myDatabase.rawQuery(getCountQuery, null);
-
-		if (d.moveToNext())
-			return d.getLong(0);
-
-		return Long.valueOf(0);
-	}
+    public Long getChansonCount() {
+        Cursor d = myDatabase.rawQuery("select count(*) from chanson", null);
+        try {
+            if (d.moveToNext())
+                return d.getLong(0);
+        } finally {
+            d.close();
+        }
+        return 0L;
+    }
 }

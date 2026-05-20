@@ -104,7 +104,7 @@ public class Chanson implements Map<String, String> {
 	
 	public void addTags(String tags){
 		String now = data.get(Chanson.Tags);
-		if(now != null && now != ""){
+		if(now != null && !now.isEmpty()){
 			data.put(Chanson.Tags, now + ", " + tags.toLowerCase());
 		}else{
 			data.put(Chanson.Tags, tags);

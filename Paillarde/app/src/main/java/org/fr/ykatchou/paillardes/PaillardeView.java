@@ -1,6 +1,5 @@
 package org.fr.ykatchou.paillardes;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -8,150 +7,135 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
- * Paillarde Application sous GPL v3
- * 
- * @author ykatchou Cettte classe affiche les paroles d'une chanson.
+ * Paillarde
+ * Application sous GPL v3
+ *
+ * @author ykatchou Cette classe affiche les paroles d'une chanson.
  */
-public class PaillardeView extends Activity {
-	private Chanson tmp_chanson;
-	private MediaPlayer mp;
+public class PaillardeView extends AppCompatActivity {
+    private Chanson tmp_chanson;
+    private MediaPlayer mp;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.paillardeview);
 
-		//Remove title bar
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Bundle b = getIntent().getBundleExtra("data");
+        if (b == null) {
+            finish();
+            return;
+        }
+        String id = b.getString(Chanson.Id);
+        tmp_chanson = Chanson.dbhelp.getChanson(Long.valueOf(id));
 
-		setContentView(R.layout.paillardeview);
+        bind_data();
+        bind_button_retour();
+        bind_button_site_web();
 
-		Bundle b = getIntent().getBundleExtra("data");
-		String Id = b.getString(Chanson.Id);
+        String midi_file = tmp_chanson.get(Chanson.Midi);
+        int midi_id = 0;
+        if (midi_file != null && !midi_file.isEmpty()) {
+            midi_id = getResources().getIdentifier(midi_file, "raw", "org.fr.ykatchou.paillardes");
+            if (midi_id != 0) {
+                mp = MediaPlayer.create(this, midi_id);
+            }
+        }
 
-		tmp_chanson = Chanson.dbhelp.getChanson(Long.valueOf(Id));
+        Button btn = findViewById(R.id.btn_play_midi);
+        if (midi_id == 0) {
+            btn.setVisibility(View.GONE);
+        } else {
+            btn.setVisibility(View.VISIBLE);
+            bind_button_play_midi(btn);
+        }
+    }
 
-		bind_data();
-		bind_button_play_midi();
-		bind_button_retour();
-		bind_button_site_web();
+    public void bind_data() {
+        TextView tv = findViewById(R.id.ch_titre);
+        tv.setText(tmp_chanson.get(Chanson.Titre));
 
-		String midi_file = tmp_chanson.get(Chanson.Midi);
-		int midi_id = 0;
-		if (midi_file != null && midi_file != "") {
-			// Load MIDI
-			midi_id = getResources().getIdentifier(midi_file, "raw",
-					"org.fr.ykatchou.paillardes");
+        tv = findViewById(R.id.ch_paroles);
+        tv.setText(tmp_chanson.get(Chanson.Paroles));
+    }
 
-			if (midi_id != 0) {
-				mp = MediaPlayer.create(this, midi_id);
-			}
-		}
+    public void bind_button_play_midi(Button btn) {
+        btn.setOnClickListener(v -> {
+            if (mp != null) {
+                if (mp.isPlaying()) {
+                    mp.pause();
+                    ((Button) v).setText(R.string.btn_play);
+                } else {
+                    mp.setLooping(true);
+                    mp.seekTo(0);
+                    mp.start();
+                    ((Button) v).setText(R.string.stop);
+                }
+            }
+        });
+    }
 
-		Button btn = (Button) findViewById(R.id.btn_play_midi);
-		if (midi_id == 0) {
-			btn.setVisibility(View.GONE);
-		} else {
-			btn.setVisibility(View.VISIBLE);
-		}
-	}
+    public void bind_button_retour() {
+        Button btn = findViewById(R.id.btn_retour);
+        btn.setOnClickListener(v -> finish());
+    }
 
-	// / BINDINGS
-	// ///////////////////////////////////////////////////////
+    public void bind_button_site_web() {
+        String url = tmp_chanson.get(Chanson.url);
+        Button btn = findViewById(R.id.btn_site_web);
+        if (url != null && !url.isEmpty()) {
+            btn.setOnClickListener(v -> {
+                String siteUrl = tmp_chanson.get(Chanson.url);
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(siteUrl)));
+            });
+        } else {
+            btn.setEnabled(false);
+        }
+    }
 
-	public void bind_data() {
-		TextView tv = (TextView) findViewById(R.id.ch_titre);
-		tv.setText(tmp_chanson.get(Chanson.Titre));
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mp != null && mp.isPlaying()) {
+            mp.pause();
+            Button btn = findViewById(R.id.btn_play_midi);
+            if (btn != null) btn.setText(R.string.btn_play);
+        }
+    }
 
-		tv = (TextView) findViewById(R.id.ch_paroles);
-		tv.setText(tmp_chanson.get(Chanson.Paroles));
-	}
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mp != null) {
+            mp.release();
+            mp = null;
+        }
+    }
 
-	public void bind_button_play_midi() {
-		Button btn = (Button) findViewById(R.id.btn_play_midi);
-		btn.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				if (mp != null) {
-					if (mp.isPlaying()) {
-						mp.pause();
-						((Button) v).setText(R.string.btn_play);
-					} else {
-						mp.setLooping(true);
-						mp.seekTo(0);
-						mp.start();
-						((Button) v).setText(R.string.stop);
-					}
-				}
-			}
-		});
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (tmp_chanson != null) {
+            String url = tmp_chanson.get(Chanson.url);
+            if (url != null && !url.isEmpty()) {
+                menu.add(R.string.menu_url);
+            }
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
 
-	public void bind_button_retour() {
-		Button btn = (Button) findViewById(R.id.btn_retour);
-		btn.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				finish();
-			}
-		});
-	}
-
-	public void bind_button_site_web() {
-		String url = tmp_chanson.get(Chanson.url);
-		Button btn = (Button) findViewById(R.id.btn_site_web);
-		if (url != null && url != "") {
-			btn.setOnClickListener(new OnClickListener() {
-				public void onClick(View v) {
-					String url = tmp_chanson.get(Chanson.url);
-					Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-					startActivity(i);
-				}
-			});
-		} else {
-			btn.setEnabled(false);
-		}
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		if (mp != null) {
-			mp.pause();
-			((Button) findViewById(R.id.btn_play_midi)).setText(R.string.btn_play);
-		}
-	}
-	
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		if (mp!=null){
-			mp.release();
-		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		if (tmp_chanson != null) {
-			String url = tmp_chanson.get(Chanson.url);
-			if (url != null && url != "") {
-				menu.add(R.string.menu_url);
-			}
-		}
-		return super.onCreateOptionsMenu(menu);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		String url = tmp_chanson.get(Chanson.url);
-		Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-		startActivity(i);
-		finish();
-
-		return super.onOptionsItemSelected(item);
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        String url = tmp_chanson.get(Chanson.url);
+        if (url != null && !url.isEmpty()) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
