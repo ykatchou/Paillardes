@@ -29,6 +29,10 @@ release:
 deploy: bug
     #!/usr/bin/env bash
     tid=$(adb devices -l | grep 'transport_id:' | head -1 | grep -oE 'transport_id:[0-9]+' | grep -oE '[0-9]+')
+    if [ -z "$tid" ]; then
+        echo "No device found. Enable Wireless debugging on your phone and run: just connect <ip>"
+        exit 1
+    fi
     adb -t "$tid" install -r Paillarde/app/build/outputs/apk/debug/app-debug.apk
 
 # Connect to a device over WiFi (e.g. `just connect 192.168.1.42`)
